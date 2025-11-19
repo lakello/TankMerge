@@ -11,14 +11,24 @@ namespace miniit.MERGE
 		private MergeItem item;
 		
 		public MergeItem Item => item;
+
+		public void ResetItemToPlace()
+		{
+			if (item == null)
+			{
+				return;
+			}
+			
+			item.transform.position = placeTransform.position;
+			item.transform.rotation = placeTransform.rotation;
+		}
 		
 		public void SetItem(MergeItem item)
 		{
 			if (this.item == null)
 			{
 				this.item = item;
-				this.item.transform.position = placeTransform.position;
-				this.item.transform.rotation = placeTransform.rotation;
+				ResetItemToPlace();
 				return;
 			}
 

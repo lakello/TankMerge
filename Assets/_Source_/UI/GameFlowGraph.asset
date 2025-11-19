@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 591775616950685018}
   - {fileID: 4287345010792798549}
   RootNode: {fileID: 591775616950685018}
-  ActiveNode: {fileID: 0}
+  ActiveNode: {fileID: 4287345010792798549}
 --- !u!114 &591775616950685018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ MonoBehaviour:
   RunUpdate: 0
   RunFixedUpdate: 0
   RunLateUpdate: 0
-  NodeState: 0
+  NodeState: 2
   CanBeDeleted: 1
   Passthrough: 0
   ClearGraphHistory: 0
