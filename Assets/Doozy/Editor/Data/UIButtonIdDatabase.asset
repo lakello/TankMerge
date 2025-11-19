@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Database:
     Items:
-    - Category: Example
-      Name: Back
-    - Category: Example
-      Name: Next
+    - Category: Control
+      Name: Buy
     - Category: None
       Name: None

@@ -14,9 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Database:
     Items:
-    - Category: Example
-      Name: One
-    - Category: Example
-      Name: Two
+    - Category: Game
+      Name: Control
     - Category: None
       Name: None
