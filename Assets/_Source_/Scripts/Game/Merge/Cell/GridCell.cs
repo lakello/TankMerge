@@ -7,7 +7,7 @@ namespace miniit.GAME.MERGE.CELL
 	public class GridCell : MonoBehaviour
 	{
 		[SerializeField]
-		private Transform placeTransform;
+		private Transform placePoint;
 
 		private MergeItem item;
 
@@ -20,8 +20,8 @@ namespace miniit.GAME.MERGE.CELL
 				return;
 			}
 
-			item.transform.position = placeTransform.position;
-			item.transform.rotation = placeTransform.rotation;
+			item.transform.position = placePoint.position;
+			item.transform.rotation = placePoint.rotation;
 		}
 
 		public void SetItem(MergeItem item)

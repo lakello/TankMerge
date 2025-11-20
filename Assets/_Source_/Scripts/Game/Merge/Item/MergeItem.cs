@@ -8,23 +8,25 @@ namespace miniit.GAME.MERGE.ITEM
 	{
 		private const int START_LEVEL = 1;
 
+		[SerializeField]
+		private Transform grabPoint;
+		
 		public static ObjectPool<MergeItem> Pool { get; private set; }
 
 		public int CurrentLevel { get; private set; }
-
-		private void OnDisable()
-		{
-			CurrentLevel = 0;
-		}
+		public Transform GrabPoint => grabPoint;
 
 		public static void InitPool(MergeItem prefab)
 		{
 			GameObject parent = new GameObject($"{nameof(MergeItem)}:POOL");
 
-			prefab.gameObject.SetActive(false);
-
 			Pool = new ObjectPool<MergeItem>(
-				createFunc: () => Instantiate(prefab, parent.transform),
+				createFunc: () =>
+				{
+					MergeItem item = Instantiate(prefab, parent.transform);
+					item.gameObject.SetActive(false);
+					return item;
+				},
 				actionOnRelease: item => item.gameObject.SetActive(false));
 		}
 

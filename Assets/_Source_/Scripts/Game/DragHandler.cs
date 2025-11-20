@@ -5,6 +5,7 @@ namespace miniit.GAME
 	using Cysharp.Threading.Tasks;
 	using INPUT;
 	using MERGE.CELL;
+	using MERGE.ITEM;
 	using UnityEngine;
 	using UnityEngine.InputSystem;
 	using UtilsModule.Other;
@@ -71,12 +72,7 @@ namespace miniit.GAME
 
 				currentCell = gridCell;
 
-				Vector3 position = currentCell.Item.transform.position;
-				position.y = holdHeight;
-				currentCell.Item.transform.position = position;
-
 				ctx = new CancellationTokenSource();
-
 				DragItem(ctx.Token).Forget();
 			}
 		}
@@ -107,6 +103,12 @@ namespace miniit.GAME
 					return;
 				}
 
+				MergeItem item = currentCell.Item;
+				if (item == null)
+				{
+					return;
+				}
+
 				Vector2 mousePosition = Mouse.current.position.ReadValue();
 				Ray ray = camera.ScreenPointToRay(new Vector3(mousePosition.x, mousePosition.y, 0.0f));
 
@@ -116,7 +118,11 @@ namespace miniit.GAME
 				if (plane.Raycast(ray, out enter))
 				{
 					Vector3 hitPoint = ray.GetPoint(enter);
-					currentCell.Item.transform.position = hitPoint;
+
+					Vector3 localPointOffset = item.transform.position - item.GrabPoint.position;
+					Vector3 targetPosition = hitPoint + localPointOffset;
+
+					item.transform.position = targetPosition;
 				}
 
 				await UniTask.Yield();

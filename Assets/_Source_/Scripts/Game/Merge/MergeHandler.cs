@@ -8,6 +8,10 @@ namespace miniit.GAME.MERGE
 
 	public class MergeHandler : MonoBehaviour
 	{
+		private const int HITS_COUNT = 4;
+
+		private readonly RaycastHit[] hitsCache = new RaycastHit[HITS_COUNT];
+
 		[SerializeField]
 		private DragHandler dragHandler;
 		[SerializeField]
@@ -49,57 +53,75 @@ namespace miniit.GAME.MERGE
 			Vector3 origin = itemTransform.position;
 			origin.y += halfExtents.y;
 
-			RaycastHit hitInfo;
-			bool hit = Physics.BoxCast(
+			int hitCount = Physics.BoxCastNonAlloc(
 				origin,
 				halfExtents,
 				Vector3.down,
-				out hitInfo,
+				hitsCache,
 				Quaternion.identity,
 				castDistance,
 				gridCellLayerMask
 			);
 
-			if (!hit)
+			if (hitCount == 0)
 			{
 				currentCell.ResetItemToPlace();
 				return;
 			}
 
-			GridCell gridCell = hitInfo.collider.GetComponent<GridCell>();
-			if (gridCell == null)
+			GridCell nearestCell = null;
+
+			for (int i = 0; i < hitCount; i++)
 			{
-				currentCell.ResetItemToPlace();
-				return;
+				if (hitsCache[i].collider.TryGetComponent(out GridCell cell))
+				{
+					if (nearestCell == null
+						|| Vector3.Distance(origin, nearestCell.transform.position) > Vector3.Distance(origin, cell.transform.position))
+					{
+						nearestCell = cell;
+					}
+				}
 			}
 
-			if (gridCell.Item == null)
+			if (nearestCell != null)
 			{
-				CellsHolder.Instance.ReleaseCell(currentCell);
-				gridCell.SetItem(item);
+				CheckCell();
 			}
 			else
 			{
-				TryMerge();
+				currentCell.ResetItemToPlace();
 			}
 
 			return;
 
+			void CheckCell()
+			{
+				if (nearestCell.Item == null || nearestCell.Item == currentCell.Item)
+				{
+					CellsHolder.Instance.ReleaseCell(currentCell);
+					nearestCell.SetItem(item);
+				}
+				else
+				{
+					TryMerge();
+				}
+			}
+
 			void TryMerge()
 			{
-				if (gridCell.Item.CurrentLevel == currentCell.Item.CurrentLevel)
+				if (nearestCell.Item.CurrentLevel == currentCell.Item.CurrentLevel)
 				{
 					int currentLevel = currentCell.Item.CurrentLevel;
 
-					MergeItem.Pool.Release(gridCell.Item);
+					MergeItem.Pool.Release(nearestCell.Item);
 					MergeItem.Pool.Release(currentCell.Item);
 
 					CellsHolder.Instance.ReleaseCell(currentCell);
-					CellsHolder.Instance.ReleaseCell(gridCell);
+					CellsHolder.Instance.ReleaseCell(nearestCell);
 
 					new MergeSuccessMessage
 					{
-						TargetCell = gridCell,
+						TargetCell = nearestCell,
 						Level = currentLevel,
 					}.Publish();
 				}

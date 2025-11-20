@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5947408146178218783}
   - component: {fileID: 1381477079072734762}
   - component: {fileID: 1199094169764109643}
-  - component: {fileID: 4881011564975048292}
   m_Layer: 0
   m_Name: LargeTankTracks
   m_TagString: Untagged
@@ -59,6 +58,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -80,24 +84,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4881011564975048292
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 19851605466706484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bb7aa8c4684ce45b311f948c0ead85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshrenderer: {fileID: 1199094169764109643}
-  _skinedMaterialIndex: 0
 --- !u!1 &588666391913325825
 GameObject:
   m_ObjectHideFlags: 0
@@ -109,7 +100,6 @@ GameObject:
   - component: {fileID: 6622143321944709787}
   - component: {fileID: 1706661817832422166}
   - component: {fileID: 8144746700486177663}
-  - component: {fileID: 6541466263759501419}
   m_Layer: 0
   m_Name: LargeTrackSet
   m_TagString: Untagged
@@ -157,6 +147,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -183,24 +178,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6541466263759501419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 588666391913325825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bb7aa8c4684ce45b311f948c0ead85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshrenderer: {fileID: 8144746700486177663}
-  _skinedMaterialIndex: 1
 --- !u!1 &1131611051370256483
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +195,6 @@ GameObject:
   - component: {fileID: 5540975772621217380}
   - component: {fileID: 608625294635297672}
   - component: {fileID: 8685286211563402625}
-  - component: {fileID: 2907803310114764234}
   m_Layer: 0
   m_Name: Decal1
   m_TagString: Untagged
@@ -261,6 +242,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -282,6 +268,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -308,18 +295,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2907803310114764234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1131611051370256483}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f985dde919e54e4e98416431798db7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1181522433204956122
 GameObject:
   m_ObjectHideFlags: 0
@@ -332,7 +307,6 @@ GameObject:
   - component: {fileID: 8552644130530260338}
   - component: {fileID: 414482933059981943}
   - component: {fileID: 7533349075492569876}
-  - component: {fileID: 2076681071571824809}
   m_Layer: 0
   m_Name: Decal2
   m_TagString: Untagged
@@ -380,6 +354,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -401,6 +380,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -427,18 +407,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2076681071571824809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1181522433204956122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f985dde919e54e4e98416431798db7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2006456795662234134
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +418,6 @@ GameObject:
   - component: {fileID: 1194453905605257388}
   - component: {fileID: 2827230233099429641}
   - component: {fileID: 60976316491633603}
-  - component: {fileID: 2120957660825239372}
   m_Layer: 0
   m_Name: Turret6
   m_TagString: Untagged
@@ -500,6 +467,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -522,24 +494,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2120957660825239372
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006456795662234134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bb7aa8c4684ce45b311f948c0ead85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshrenderer: {fileID: 60976316491633603}
-  _skinedMaterialIndex: 0
 --- !u!1 &4348276708257544664
 GameObject:
   m_ObjectHideFlags: 0
@@ -580,9 +539,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8675494271094170333}
-  - component: {fileID: 8279244273007163069}
-  - component: {fileID: 8462010234814122126}
-  - component: {fileID: 5595197753864082711}
+  - component: {fileID: 5556746478135060997}
   m_Layer: 0
   m_Name: Annihilator
   m_TagString: Untagged
@@ -600,15 +557,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4819480876112559468}
   - {fileID: 1194453905605257388}
   - {fileID: 5808196049430073369}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8279244273007163069
+--- !u!114 &5556746478135060997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -617,47 +574,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6018573583837503624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b292ebf7a88b749bf0cdb2d6e72626, type: 3}
+  m_Script: {fileID: 11500000, guid: 7144597b35974e8fa3ce82ad86515de5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _tankSkin: {fileID: 8462010234814122126}
-  _decals: {fileID: 5595197753864082711}
-  _bulletPoints:
-  - {fileID: 4713658550479917580}
-  _turret: {fileID: 1194453905605257388}
---- !u!114 &8462010234814122126
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6018573583837503624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3eaed14f1f419347978f5932d47222b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _parts:
-  - {fileID: 2120957660825239372}
-  - {fileID: 4881011564975048292}
---- !u!114 &5595197753864082711
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6018573583837503624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b10548efabd9044cb7cec69287973b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _renderers:
-  - {fileID: 608625294635297672}
-  - {fileID: 414482933059981943}
-  _decalAnimators:
-  - {fileID: 2907803310114764234}
-  - {fileID: 2076681071571824809}
+  m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
 --- !u!1 &6029273034108869916
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +659,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -761,6 +685,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -772,7 +697,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6616081577680767651

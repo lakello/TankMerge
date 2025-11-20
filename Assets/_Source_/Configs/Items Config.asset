@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69fbdac6463243739839b47e30d0024c, type: 3}
+  m_Name: Items Config
+  m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Settings.ItemsConfig
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  items:
+  - {fileID: 5556746478135060997, guid: de6a33d499d07db40bf3b6e029bf10b6, type: 3}
+  - {fileID: 1045368688392059872, guid: 69015384c6a9b1e4db636bb8e7a5d2ba, type: 3}
+  - {fileID: 6312249898603194576, guid: 4b7ca2b18becc7040aa3c035822b59ac, type: 3}
+  - {fileID: 7554022100711472949, guid: 1e2ce1735af75e14ba7fcf207f096bea, type: 3}
+  - {fileID: -7204945895056754757, guid: 64bdfd1708b53a541a21ebad7aca690e, type: 3}
+  - {fileID: 341132797171892020, guid: 7003a0c28ed131a478b0f72c7c26bd39, type: 3}
+  - {fileID: -648783874452918279, guid: af0b5f84d14d0a041b3bfb760a1d4af3, type: 3}
+  - {fileID: -3294351458920684236, guid: 4603ef3b9d024fa4bbcb00ba278571a4, type: 3}
+  skins: []

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6100703487985128961}
   - component: {fileID: 1183667157248033474}
   - component: {fileID: 2077836503380332495}
-  - component: {fileID: 333158949287578319}
   m_Layer: 0
   m_Name: Decal1
   m_TagString: Untagged
@@ -60,6 +59,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -81,6 +85,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -107,18 +112,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &333158949287578319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 111517092502319498}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f985dde919e54e4e98416431798db7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1866997468904874328
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,9 +185,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9020359448176876023}
-  - component: {fileID: 3150530185864794250}
-  - component: {fileID: 4887132264401719797}
-  - component: {fileID: 7631649583623789901}
+  - component: {fileID: 341132797171892020}
   m_Layer: 0
   m_Name: Ranger
   m_TagString: Untagged
@@ -212,15 +203,15 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 796307790917451008}
   - {fileID: 8747193624797659068}
   - {fileID: 8420901854535091213}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3150530185864794250
+--- !u!114 &341132797171892020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -229,48 +220,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2544042459494450154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38b292ebf7a88b749bf0cdb2d6e72626, type: 3}
+  m_Script: {fileID: 11500000, guid: 7144597b35974e8fa3ce82ad86515de5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  _tankSkin: {fileID: 4887132264401719797}
-  _decals: {fileID: 7631649583623789901}
-  _bulletPoints:
-  - {fileID: 7193112378711610976}
-  _turret: {fileID: 8747193624797659068}
---- !u!114 &4887132264401719797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2544042459494450154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3eaed14f1f419347978f5932d47222b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _parts:
-  - {fileID: 7022645984736563640}
-  - {fileID: 874757004281142457}
-  - {fileID: 1682026206979167001}
---- !u!114 &7631649583623789901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2544042459494450154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b10548efabd9044cb7cec69287973b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _renderers:
-  - {fileID: 1183667157248033474}
-  - {fileID: 3842334355368544632}
-  _decalAnimators:
-  - {fileID: 333158949287578319}
-  - {fileID: 6626822415736192943}
+  m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
 --- !u!1 &2594443887832802848
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +234,6 @@ GameObject:
   - component: {fileID: 8560962619401490187}
   - component: {fileID: 3993610966219369022}
   - component: {fileID: 3811135850485205343}
-  - component: {fileID: 874757004281142457}
   m_Layer: 0
   m_Name: LargeTankTracks
   m_TagString: Untagged
@@ -330,6 +281,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -351,24 +307,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &874757004281142457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2594443887832802848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bb7aa8c4684ce45b311f948c0ead85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshrenderer: {fileID: 3811135850485205343}
-  _skinedMaterialIndex: 0
 --- !u!1 &2843250759132563046
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,6 +361,11 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -439,6 +387,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -450,7 +399,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3011645227590212833
@@ -465,7 +414,6 @@ GameObject:
   - component: {fileID: 7044319018596196062}
   - component: {fileID: 3842334355368544632}
   - component: {fileID: 7684042845068494181}
-  - component: {fileID: 6626822415736192943}
   m_Layer: 0
   m_Name: Decal2
   m_TagString: Untagged
@@ -513,6 +461,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -534,6 +487,7 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -560,18 +514,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &6626822415736192943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3011645227590212833}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f985dde919e54e4e98416431798db7b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3201086132696723733
 GameObject:
   m_ObjectHideFlags: 0
@@ -583,7 +525,6 @@ GameObject:
   - component: {fileID: 9196704835160247951}
   - component: {fileID: 3740399984004755202}
   - component: {fileID: 6142951599823529835}
-  - component: {fileID: 1682026206979167001}
   m_Layer: 0
   m_Name: LargeTrackSet
   m_TagString: Untagged
@@ -631,6 +572,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -657,24 +603,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1682026206979167001
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3201086132696723733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bb7aa8c4684ce45b311f948c0ead85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshrenderer: {fileID: 6142951599823529835}
-  _skinedMaterialIndex: 1
 --- !u!1 &8227960990106412294
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +619,6 @@ GameObject:
   - component: {fileID: 8747193624797659068}
   - component: {fileID: 5677805291600556057}
   - component: {fileID: 7579393922573518035}
-  - component: {fileID: 7022645984736563640}
   m_Layer: 0
   m_Name: TankTurret
   m_TagString: Untagged
@@ -736,6 +668,11 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -758,24 +695,11 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7022645984736563640
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8227960990106412294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69bb7aa8c4684ce45b311f948c0ead85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _meshrenderer: {fileID: 7579393922573518035}
-  _skinedMaterialIndex: 0
 --- !u!1 &9193778898109619895
 GameObject:
   m_ObjectHideFlags: 0

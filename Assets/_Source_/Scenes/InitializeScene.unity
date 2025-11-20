@@ -524,6 +524,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Source_.Scripts.EntryPoint.Bootstrap
   gameSceneName: GameScene
+  itemsConfig: {fileID: 11400000, guid: 291195b661c35f945aa68456e3204f13, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

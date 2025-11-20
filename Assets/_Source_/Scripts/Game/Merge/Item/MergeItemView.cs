@@ -1,8 +1,11 @@
 namespace miniit.GAME.MERGE.ITEM
 {
+	using Entities;
+	using Settings;
 	using TMPro;
 	using UnityEngine;
 	using UnityEngine.Animations;
+	using UtilsModule.Other;
 
 	public class MergeItemView : MonoBehaviour
 	{
@@ -12,7 +15,11 @@ namespace miniit.GAME.MERGE.ITEM
 		private TMP_Text levelOutput;
 		[SerializeField]
 		private MergeItem mergeItem;
+		[SerializeField]
+		private Transform viewContainer;
 
+		private Item currentItem;
+		
 		private void Awake()
 		{
 			lookAtConstraint.gameObject.SetActive(false);
@@ -23,10 +30,16 @@ namespace miniit.GAME.MERGE.ITEM
 		{
 			lookAtConstraint.gameObject.SetActive(true);
 			levelOutput.text = mergeItem.CurrentLevel.ToString();
+
+			currentItem = DI.Resolve<ItemsConfig>().GetItemByLevel(mergeItem.CurrentLevel);
+			currentItem.transform.SetParent(viewContainer);
+			currentItem.transform.localPosition = Vector3.zero;
+			currentItem.transform.localRotation = Quaternion.identity;
 		}
 
 		private void OnDisable()
 		{
+			DI.Resolve<ItemsConfig>().ReleaseItem(currentItem, mergeItem.CurrentLevel);
 			lookAtConstraint.gameObject.SetActive(false);
 		}
 	}

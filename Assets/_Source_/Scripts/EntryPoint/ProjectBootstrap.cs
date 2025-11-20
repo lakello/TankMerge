@@ -1,5 +1,6 @@
 namespace miniit.ENTRYPOINT
 {
+	using GAME.Settings;
 	using INPUT;
 	using NaughtyAttributes.Core.DrawerAttributes;
 	using UnityEngine;
@@ -14,6 +15,8 @@ namespace miniit.ENTRYPOINT
 		[Scene]
 		[SerializeField]
 		private string gameSceneName;
+		[SerializeField]
+		private ItemsConfig itemsConfig;
 
 		public ExecuteMethod Method => ExecuteMethod.Awake;
 		public int Priority { get; set; }
@@ -28,7 +31,9 @@ namespace miniit.ENTRYPOINT
 			GlobalDisposableHolder.Create();
 
 			InputActions actions = new InputActions();
+
 			DI.Register(actions).DisposeOnQuitGame();
+			DI.Register(itemsConfig).DisposeOnQuitGame();
 
 			SceneManager.LoadSceneAsync(gameSceneName);
 		}
