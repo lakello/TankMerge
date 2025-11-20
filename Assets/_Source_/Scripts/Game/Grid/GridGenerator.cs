@@ -2,9 +2,12 @@ namespace miniit.GAME.MERGE
 {
 	using System.Collections.Generic;
 	using MERGE.CELL;
+	using Sirenix.OdinInspector;
+	using UnityEditor;
 	using UnityEngine;
 	using UtilsModule.Execute;
 	using UtilsModule.Execute.Interfaces;
+	using UtilsModule.Extensions;
 
 	public class GridGenerator : MonoBehaviour, IExecuteHolder
 	{
@@ -20,15 +23,25 @@ namespace miniit.GAME.MERGE
 		private float cellSize = 1.0f;
 		[SerializeField]
 		private Vector2 cellSpacing;
+		[ReadOnly]
+		[SerializeField]
+		private List<GridCell> cells;
 
 		public ExecuteMethod Method => ExecuteMethod.Start;
 		public int Priority { get; set; }
 
 		public Executor GetExecutor()
 		{
-			return new ExecutorSync(Generate);
+			return new ExecutorSync(Init);
 		}
 
+		private void Init()
+		{
+			new CellsHolder(cells);
+		}
+
+#if UNITY_EDITOR
+		[Button]
 		private void Generate()
 		{
 			if (gridCenter == null)
@@ -46,7 +59,7 @@ namespace miniit.GAME.MERGE
 				return;
 			}
 
-			List<GridCell> cells = new List<GridCell>();
+			cells = new List<GridCell>();
 
 			float stepX = cellSize + cellSpacing.x;
 			float stepZ = cellSize + cellSpacing.y;
@@ -66,12 +79,29 @@ namespace miniit.GAME.MERGE
 					cellPosition.x += j * stepX;
 					cellPosition.z += i * stepZ;
 
-					GridCell cellInstance = Instantiate(cellPrefab, cellPosition, Quaternion.identity, gridCenter);
+					GridCell cellInstance = PrefabUtility.InstantiatePrefab(cellPrefab, gridCenter) as GridCell;
+					cellInstance.transform.position = cellPosition;
 					cells.Add(cellInstance);
 				}
 			}
-
-			new CellsHolder(cells);
+			
+			this.SetDirty();
 		}
+
+		[Button]
+		private void Clear()
+		{
+			if (cells is { Count: > 0 })
+			{
+				for (int i = 0; i < cells.Count; i++)
+				{
+					DestroyImmediate(cells[i].gameObject);
+				}
+				
+				cells.Clear();
+			}
+		}
+#endif
+		
 	}
 }
