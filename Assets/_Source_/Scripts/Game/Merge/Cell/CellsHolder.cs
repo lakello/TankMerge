@@ -1,14 +1,15 @@
-namespace miniit.MERGE
+namespace miniit.GAME.MERGE.CELL
 {
 	using System;
 	using System.Collections.Generic;
+	using ITEM;
 	using UnityEngine;
+	using ZLinq;
 	using Random = UnityEngine.Random;
 
 	public class CellsHolder : IDisposable
 	{
-		private readonly List<GridCell> emptyCells;
-		private readonly List<GridCell> occupiedCells;
+		private readonly List<GridCell> cells;
 
 		public CellsHolder(List<GridCell> cells)
 		{
@@ -19,31 +20,30 @@ namespace miniit.MERGE
 				return;
 			}
 
-			emptyCells = cells;
-			occupiedCells = new List<GridCell>(cells.Count);
+			this.cells = cells;
 
 			Instance = this;
 		}
 
 		public static CellsHolder Instance { get; private set; }
 
-		public bool CanOccupyCell => emptyCells.Count > 0;
+		public bool CanOccupyCell => cells.AsValueEnumerable().Any(c => c.Item == null);
 
 		public void Dispose()
 		{
 			Instance = null;
 		}
 
-		public bool TryOccupyCell(MergeItem mergeItem)
+		public bool TryOccupyRandomCell(MergeItem mergeItem)
 		{
-			if (CanOccupyCell)
+			var emptyCells = cells.AsValueEnumerable().Where(c => c.Item == null).ToArray();
+
+			if (emptyCells.Length > 0)
 			{
-				int randomIndex = Random.Range(0, emptyCells.Count);
+				int randomIndex = Random.Range(0, emptyCells.Length);
 
 				GridCell cell = emptyCells[randomIndex];
 				cell.SetItem(mergeItem);
-				emptyCells.RemoveAt(randomIndex);
-				occupiedCells.Add(cell);
 				return true;
 			}
 
@@ -52,7 +52,8 @@ namespace miniit.MERGE
 
 		public void ReleaseCell(GridCell cell)
 		{
-			emptyCells.Add(cell);
+			cell.Release();
+			cells.Add(cell);
 		}
 	}
 }

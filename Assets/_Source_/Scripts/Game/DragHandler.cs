@@ -1,9 +1,10 @@
-namespace miniit.MERGE
+namespace miniit.GAME
 {
 	using System;
 	using System.Threading;
 	using Cysharp.Threading.Tasks;
 	using INPUT;
+	using MERGE.CELL;
 	using UnityEngine;
 	using UnityEngine.InputSystem;
 	using UtilsModule.Other;
@@ -21,7 +22,7 @@ namespace miniit.MERGE
 		private GridCell currentCell = null;
 		private CancellationTokenSource ctx;
 
-		public event Action<MergeItem> DragEnded = delegate { };
+		public event Action<GridCell> DragEnded = delegate { };
 
 		private void Awake()
 		{
@@ -69,7 +70,7 @@ namespace miniit.MERGE
 				}
 
 				currentCell = gridCell;
-				
+
 				Vector3 position = currentCell.Item.transform.position;
 				position.y = holdHeight;
 				currentCell.Item.transform.position = position;
@@ -87,7 +88,7 @@ namespace miniit.MERGE
 				return;
 			}
 
-			DragEnded(currentCell.Item);
+			DragEnded(currentCell);
 
 			ctx?.Cancel();
 		}
@@ -121,7 +122,6 @@ namespace miniit.MERGE
 				await UniTask.Yield();
 			}
 
-			currentCell.ResetItemToPlace();
 			currentCell = null;
 		}
 	}

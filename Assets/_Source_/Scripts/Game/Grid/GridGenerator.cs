@@ -1,6 +1,7 @@
-namespace miniit.MERGE
+namespace miniit.GAME.MERGE
 {
 	using System.Collections.Generic;
+	using MERGE.CELL;
 	using UnityEngine;
 	using UtilsModule.Execute;
 	using UtilsModule.Execute.Interfaces;
@@ -19,7 +20,7 @@ namespace miniit.MERGE
 		private float cellSize = 1.0f;
 		[SerializeField]
 		private Vector2 cellSpacing;
-		
+
 		public ExecuteMethod Method => ExecuteMethod.Start;
 		public int Priority { get; set; }
 

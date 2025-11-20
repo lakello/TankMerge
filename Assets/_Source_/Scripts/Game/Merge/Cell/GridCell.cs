@@ -1,15 +1,16 @@
-namespace miniit.MERGE
+namespace miniit.GAME.MERGE.CELL
 {
 	using System;
+	using ITEM;
 	using UnityEngine;
 
 	public class GridCell : MonoBehaviour
 	{
 		[SerializeField]
 		private Transform placeTransform;
-		
+
 		private MergeItem item;
-		
+
 		public MergeItem Item => item;
 
 		public void ResetItemToPlace()
@@ -18,11 +19,11 @@ namespace miniit.MERGE
 			{
 				return;
 			}
-			
+
 			item.transform.position = placeTransform.position;
 			item.transform.rotation = placeTransform.rotation;
 		}
-		
+
 		public void SetItem(MergeItem item)
 		{
 			if (this.item == null)
