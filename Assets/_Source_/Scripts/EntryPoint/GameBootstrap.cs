@@ -1,20 +1,14 @@
 namespace miniit.ENTRYPOINT
 {
 	using INPUT;
-	using NaughtyAttributes.Core.DrawerAttributes;
 	using UnityEngine;
-	using UnityEngine.SceneManagement;
 	using UtilsModule.Disposable;
 	using UtilsModule.Execute;
 	using UtilsModule.Execute.Interfaces;
 	using UtilsModule.Other;
 
-	public class ProjectBootstrap : MonoBehaviour, IExecuteHolder
+	public class GameBootstrap : MonoBehaviour, IExecuteHolder
 	{
-		[Scene]
-		[SerializeField]
-		private string gameSceneName;
-
 		public ExecuteMethod Method => ExecuteMethod.Awake;
 		public int Priority { get; set; }
 
@@ -25,12 +19,17 @@ namespace miniit.ENTRYPOINT
 
 		private void Init()
 		{
-			GlobalDisposableHolder.Create();
+			SceneDisposableHolder.Create(gameObject.scene.name);
 
-			InputActions actions = new InputActions();
-			DI.Register(actions).DisposeOnQuitGame();
+			DI.Resolve<InputActions>().Enable();
+		}
 
-			SceneManager.LoadSceneAsync(gameSceneName);
+		private void OnDisable()
+		{
+			if (DI.TryResolve(out InputActions input))
+			{
+				input.Disable();
+			}
 		}
 	}
 }
