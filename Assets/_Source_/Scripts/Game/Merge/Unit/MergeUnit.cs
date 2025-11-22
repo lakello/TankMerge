@@ -16,9 +16,9 @@ namespace MiniIT.GAME.MERGE.UNIT
         [SerializeField] private Transform grabPoint;
         [SerializeField] private Transform viewContainer;
 
-        private Tank       currentTank;
+        private Tank           currentTank;
         private TankDataHolder tankDataHolder;
-        private DContainer container;
+        private DContainer     container;
 
         public static ObjectPool<MergeUnit> Pool { get; private set; }
         public static int MaxLevel { get; private set; }
@@ -59,20 +59,10 @@ namespace MiniIT.GAME.MERGE.UNIT
             currentTank.transform.localRotation = Quaternion.identity;
 
             Container.Register(currentTank);
-
-            if (container.TryResolve(out MergeUnitView view))
-            {
-                view.Enable(CurrentLevel);
-            }
         }
 
         private void OnDisable()
         {
-            if (container.TryResolve(out MergeUnitView view))
-            {
-                view.Disable();
-            }
-            
             Container.Release<Tank>();
             tankDataHolder.ReleaseTank(currentTank, CurrentLevel);
         }

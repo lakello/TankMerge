@@ -2,7 +2,7 @@ namespace MiniIT.ENTRYPOINT
 {
     using GAME.PLAYER;
     using GAME.Settings;
-    using INPUT;
+    using miniit.INPUT;
     using NaughtyAttributes.Core.DrawerAttributes;
     using UnityEngine;
     using UnityEngine.SceneManagement;

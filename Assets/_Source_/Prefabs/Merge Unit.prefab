@@ -330,7 +330,6 @@ GameObject:
   - component: {fileID: 6968919810965586795}
   - component: {fileID: 402910361645700555}
   - component: {fileID: 7921987631597612946}
-  - component: {fileID: 7423512047106006150}
   - component: {fileID: 1309691407326077607}
   - component: {fileID: 6419664655738369954}
   m_Layer: 0
@@ -393,20 +392,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::miniit.MERGE.MergeItem
   grabPoint: {fileID: 1078586830322014528}
   viewContainer: {fileID: 1653414247772847430}
---- !u!114 &7423512047106006150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9054634668669967784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8180f836b8074be5ba0cd3660cf545a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.MERGE.UNIT.MergeUnitView
-  lookAtConstraint: {fileID: 3346614112240975755}
-  levelOutput: {fileID: 8765169781517252983}
 --- !u!114 &1309691407326077607
 MonoBehaviour:
   m_ObjectHideFlags: 0

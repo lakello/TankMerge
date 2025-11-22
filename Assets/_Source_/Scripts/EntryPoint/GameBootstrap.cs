@@ -2,7 +2,7 @@ namespace MiniIT.ENTRYPOINT
 {
     using GAME.MERGE.UNIT;
     using GAME.PLAYER;
-    using INPUT;
+    using miniit.INPUT;
     using Sirenix.OdinInspector;
     using UnityEngine;
     using UtilsModule.Disposable;

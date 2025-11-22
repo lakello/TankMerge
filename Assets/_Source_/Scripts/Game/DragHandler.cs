@@ -3,9 +3,9 @@ namespace MiniIT.GAME
     using System;
     using System.Threading;
     using Cysharp.Threading.Tasks;
-    using INPUT;
     using MERGE.CELL;
     using MERGE.UNIT;
+    using miniit.INPUT;
     using UnityEngine;
     using UnityEngine.InputSystem;
     using UtilsModule.Other;
@@ -14,6 +14,7 @@ namespace MiniIT.GAME
     {
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float     holdHeight;
+        [SerializeField] private float     castDistance = 2f;
 
         private InputActions       inputActions = null;
         private UnityEngine.Camera camera       = null;
@@ -89,6 +90,8 @@ namespace MiniIT.GAME
 
         private async UniTaskVoid DragItem(CancellationToken token)
         {
+            UpdateSelected(token).Forget();
+
             while (token.IsCancellationRequested == false)
             {
                 if (currentCell == null)
@@ -127,6 +130,38 @@ namespace MiniIT.GAME
             }
 
             currentCell = null;
+        }
+
+        private async UniTaskVoid UpdateSelected(CancellationToken token)
+        {
+            GridCell previousCell = null;
+
+            while (token.IsCancellationRequested == false)
+            {
+                if (currentCell == null)
+                {
+                    return;
+                }
+
+                GridCell nearestCell = GridCell.GetNearestCell(currentCell, castDistance);
+
+                if (previousCell != nearestCell)
+                {
+                    if (previousCell != null)
+                    {
+                        previousCell.UpdateView(nearestCell, currentCell);
+                    }
+
+                    if (nearestCell != null)
+                    {
+                        nearestCell.UpdateView(nearestCell, currentCell);
+                    }
+
+                    previousCell = nearestCell;
+                }
+
+                await UniTask.Yield(PlayerLoopTiming.FixedUpdate);
+            }
         }
     }
 }

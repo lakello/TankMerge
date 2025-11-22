@@ -36,6 +36,7 @@ namespace MiniIT.GAME.Settings
                     {
                         tank.Init(new TankLevelConfig
                         {
+                            Level = level,
                             DamageMultiplier = damageMultiplier.Get(level, levelRange),
                             HealthMultiplier = healthMultiplier.Get(level, levelRange),
                             TakeDamageRewardMultiplier = takeDamageRewardMultiplier.Get(level, levelRange),

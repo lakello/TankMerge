@@ -16,9 +16,9 @@ namespace MiniIT.GAME.Entities
         [SerializeField] private float   takeDamageReward;
         [SerializeField] private float   deadReward;
 
-        private Fraction            selfFraction;
         private CompositeDisposable disposable = null;
         private TankLevelConfig     tankLevelConfig;
+        private Fraction            selfFraction;
 
         public event Action<Tank> Dead = delegate { };
 
@@ -26,6 +26,7 @@ namespace MiniIT.GAME.Entities
 
         public Health Health => health;
         public Attaker Attaker => attaker;
+        public ReactiveProperty<int> Level { get; } = new ReactiveProperty<int>(0);
 
 #if UNITY_EDITOR
         private void OnValidate()
@@ -43,12 +44,14 @@ namespace MiniIT.GAME.Entities
         public void Init(TankLevelConfig config)
         {
             tankLevelConfig = config;
+            Level.Value = tankLevelConfig.Level;
             health.Init(config.HealthMultiplier);
             attaker.Init(config.DamageMultiplier);
         }
 
         public void Run(BattleData data)
         {
+            health.Activate();
             attaker.StartAttack(data);
             selfFraction = data.SelfFraction;
 
