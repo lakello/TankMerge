@@ -1,44 +1,48 @@
-namespace miniit.GAME.MERGE.CELL
+namespace MiniIT.GAME.MERGE.CELL
 {
-	using System;
-	using ITEM;
-	using UnityEngine;
+    using System;
+    using UNIT;
+    using UnityEngine;
 
-	public class GridCell : MonoBehaviour
-	{
-		[SerializeField]
-		private Transform placePoint;
+    public class GridCell : MonoBehaviour
+    {
+        [SerializeField] private Transform placePoint;
 
-		private MergeItem item;
+        private MergeUnit mergeUnit;
 
-		public MergeItem Item => item;
+        public event Action<GridCell> Changed = delegate { };
 
-		public void ResetItemToPlace()
-		{
-			if (item == null)
-			{
-				return;
-			}
+        public MergeUnit MergeUnit => mergeUnit;
 
-			item.transform.position = placePoint.position;
-			item.transform.rotation = placePoint.rotation;
-		}
+        public void ResetItemToPlace()
+        {
+            if (mergeUnit == null)
+            {
+                return;
+            }
 
-		public void SetItem(MergeItem item)
-		{
-			if (this.item == null)
-			{
-				this.item = item;
-				ResetItemToPlace();
-				return;
-			}
+            mergeUnit.transform.position = placePoint.position;
+            mergeUnit.transform.rotation = placePoint.rotation;
+        }
 
-			throw new Exception("Cannot set more than once");
-		}
+        public void SetItem(MergeUnit unit)
+        {
+            if (this.mergeUnit == null)
+            {
+                this.mergeUnit = unit;
+                ResetItemToPlace();
 
-		public void Release()
-		{
-			item = null;
-		}
-	}
+                Changed(this);
+                return;
+            }
+
+            throw new Exception("Cannot set more than once");
+        }
+
+        public void Release()
+        {
+            mergeUnit = null;
+            Changed(this);
+        }
+    }
 }

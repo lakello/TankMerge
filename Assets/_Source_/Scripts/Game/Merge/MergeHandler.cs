@@ -1,135 +1,139 @@
-namespace miniit.GAME.MERGE
+namespace MiniIT.GAME.MERGE
 {
-	using CELL;
-	using ITEM;
-	using MessageModule;
-	using Messages;
-	using UnityEngine;
+    using CELL;
+    using UNIT;
+    using MessageModule;
+    using Messages;
+    using UnityEngine;
 
-	public class MergeHandler : MonoBehaviour
-	{
-		private const int HITS_COUNT = 4;
+    public class MergeHandler : MonoBehaviour
+    {
+        private const int HITS_COUNT = 4;
 
-		private readonly RaycastHit[] hitsCache = new RaycastHit[HITS_COUNT];
+        private readonly RaycastHit[] hitsCache = new RaycastHit[HITS_COUNT];
 
-		[SerializeField]
-		private DragHandler dragHandler;
-		[SerializeField]
-		private LayerMask gridCellLayerMask = 0;
-		[SerializeField]
-		private float castDistance = 2.0f;
+        [SerializeField] private DragHandler dragHandler;
+        [SerializeField] private LayerMask   gridCellLayerMask = 0;
+        [SerializeField] private float       castDistance      = 2.0f;
 
-		private void OnEnable()
-		{
-			dragHandler.DragEnded += OnDragEnded;
-		}
+        private void OnEnable()
+        {
+            dragHandler.DragEnded += OnDragEnded;
+        }
 
-		private void OnDisable()
-		{
-			dragHandler.DragEnded -= OnDragEnded;
-		}
+        private void OnDisable()
+        {
+            dragHandler.DragEnded -= OnDragEnded;
+        }
 
-		private void OnDragEnded(GridCell currentCell)
-		{
-			if (currentCell == null || currentCell.Item == null)
-			{
-				return;
-			}
+        private void OnDragEnded(GridCell currentCell)
+        {
+            if (currentCell == null || currentCell.MergeUnit == null)
+            {
+                return;
+            }
 
-			MergeItem item = currentCell.Item;
+            MergeUnit unit = currentCell.MergeUnit;
 
-			Transform itemTransform = item.transform;
+            Transform itemTransform = unit.transform;
 
-			BoxCollider boxCollider = null;
-			bool hasCollider = item.TryGetComponent(out boxCollider);
-			if (!hasCollider || boxCollider == null)
-			{
-				currentCell.ResetItemToPlace();
-				return;
-			}
+            BoxCollider boxCollider = null;
+            bool hasCollider = unit.TryGetComponent(out boxCollider);
+            if (!hasCollider || boxCollider == null)
+            {
+                currentCell.ResetItemToPlace();
+                return;
+            }
 
-			Vector3 halfExtents = boxCollider.bounds.extents;
+            Vector3 halfExtents = boxCollider.bounds.extents;
 
-			Vector3 origin = itemTransform.position;
-			origin.y += halfExtents.y;
+            Vector3 origin = itemTransform.position;
+            origin.y += halfExtents.y;
 
-			int hitCount = Physics.BoxCastNonAlloc(
-				origin,
-				halfExtents,
-				Vector3.down,
-				hitsCache,
-				Quaternion.identity,
-				castDistance,
-				gridCellLayerMask
-			);
+            int hitCount = Physics.BoxCastNonAlloc(
+                origin,
+                halfExtents,
+                Vector3.down,
+                hitsCache,
+                Quaternion.identity,
+                castDistance,
+                gridCellLayerMask
+            );
 
-			if (hitCount == 0)
-			{
-				currentCell.ResetItemToPlace();
-				return;
-			}
+            if (hitCount == 0)
+            {
+                currentCell.ResetItemToPlace();
+                return;
+            }
 
-			GridCell nearestCell = null;
+            GridCell nearestCell = null;
 
-			for (int i = 0; i < hitCount; i++)
-			{
-				if (hitsCache[i].collider.TryGetComponent(out GridCell cell))
-				{
-					if (nearestCell == null
-						|| Vector3.Distance(origin, nearestCell.transform.position) > Vector3.Distance(origin, cell.transform.position))
-					{
-						nearestCell = cell;
-					}
-				}
-			}
+            for (int i = 0; i < hitCount; i++)
+            {
+                if (hitsCache[i].collider.TryGetComponent(out GridCell cell))
+                {
+                    if (nearestCell == null
+                        || Vector3.Distance(origin, nearestCell.transform.position) > Vector3.Distance(origin, cell.transform.position))
+                    {
+                        nearestCell = cell;
+                    }
+                }
+            }
 
-			if (nearestCell != null)
-			{
-				CheckCell();
-			}
-			else
-			{
-				currentCell.ResetItemToPlace();
-			}
+            if (nearestCell != null)
+            {
+                CheckCell();
+            }
+            else
+            {
+                currentCell.ResetItemToPlace();
+            }
 
-			return;
+            return;
 
-			void CheckCell()
-			{
-				if (nearestCell.Item == null || nearestCell.Item == currentCell.Item)
-				{
-					CellsHolder.Instance.ReleaseCell(currentCell);
-					nearestCell.SetItem(item);
-				}
-				else
-				{
-					TryMerge();
-				}
-			}
+            void CheckCell()
+            {
+                if (nearestCell.MergeUnit == null)
+                {
+                    CellsHolder.Instance.ReleaseCell(currentCell);
+                    nearestCell.SetItem(unit);
+                }
+                else
+                {
+                    if (nearestCell.MergeUnit == currentCell.MergeUnit)
+                    {
+                        currentCell.ResetItemToPlace();
+                    }
+                    else
+                    {
+                        TryMerge();
+                    }
+                }
+            }
 
-			void TryMerge()
-			{
-				if (nearestCell.Item.CurrentLevel == currentCell.Item.CurrentLevel)
-				{
-					int currentLevel = currentCell.Item.CurrentLevel;
+            void TryMerge()
+            {
+                if (nearestCell.MergeUnit.CurrentLevel == currentCell.MergeUnit.CurrentLevel)
+                {
+                    int currentLevel = currentCell.MergeUnit.CurrentLevel;
 
-					MergeItem.Pool.Release(nearestCell.Item);
-					MergeItem.Pool.Release(currentCell.Item);
+                    MergeUnit.Pool.Release(nearestCell.MergeUnit);
+                    MergeUnit.Pool.Release(currentCell.MergeUnit);
 
-					CellsHolder.Instance.ReleaseCell(currentCell);
-					CellsHolder.Instance.ReleaseCell(nearestCell);
+                    CellsHolder.Instance.ReleaseCell(currentCell);
+                    CellsHolder.Instance.ReleaseCell(nearestCell);
 
-					new MergeSuccessMessage
-					{
-						TargetCell = nearestCell,
-						Level = currentLevel,
-					}.Publish();
-				}
-				else
-				{
-					currentCell.ResetItemToPlace();
-				}
-			}
-		}
-	}
+                    new MergeSuccessMessage
+                    {
+                        TargetCell = nearestCell,
+                        Level = currentLevel,
+                    }.Publish();
+                }
+                else
+                {
+                    currentCell.ResetItemToPlace();
+                }
+            }
+        }
+    }
 }

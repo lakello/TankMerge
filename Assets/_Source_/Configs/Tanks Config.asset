@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69fbdac6463243739839b47e30d0024c, type: 3}
-  m_Name: Items Config
+  m_Name: Tanks Config
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Settings.ItemsConfig
   serializationData:
     SerializedFormat: 2
@@ -21,7 +21,7 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
-  items:
+  tanks:
   - {fileID: 5556746478135060997, guid: de6a33d499d07db40bf3b6e029bf10b6, type: 3}
   - {fileID: 1045368688392059872, guid: 69015384c6a9b1e4db636bb8e7a5d2ba, type: 3}
   - {fileID: 6312249898603194576, guid: 4b7ca2b18becc7040aa3c035822b59ac, type: 3}

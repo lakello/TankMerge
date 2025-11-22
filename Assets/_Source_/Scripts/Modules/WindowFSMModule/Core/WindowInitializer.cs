@@ -21,7 +21,7 @@ namespace WindowFSMModule
 
 		private void WindowsInit()
 		{
-			var machine = DI.Resolve<WindowStateMachine>();
+			var machine = GlobalData.Container.Resolve<WindowStateMachine>();
 			
 			foreach (var window in _windows)
 			{

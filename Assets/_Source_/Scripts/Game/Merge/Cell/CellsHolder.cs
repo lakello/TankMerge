@@ -1,8 +1,8 @@
-namespace miniit.GAME.MERGE.CELL
+namespace MiniIT.GAME.MERGE.CELL
 {
 	using System;
 	using System.Collections.Generic;
-	using ITEM;
+	using UNIT;
 	using UnityEngine;
 	using ZLinq;
 	using Random = UnityEngine.Random;
@@ -27,23 +27,23 @@ namespace miniit.GAME.MERGE.CELL
 
 		public static CellsHolder Instance { get; private set; }
 
-		public bool CanOccupyCell => cells.AsValueEnumerable().Any(c => c.Item == null);
+		public bool CanOccupyCell => cells.AsValueEnumerable().Any(c => c.MergeUnit == null);
 
 		public void Dispose()
 		{
 			Instance = null;
 		}
 
-		public bool TryOccupyRandomCell(MergeItem mergeItem)
+		public bool TryOccupyRandomCell(MergeUnit mergeUnit)
 		{
-			var emptyCells = cells.AsValueEnumerable().Where(c => c.Item == null).ToArray();
+			var emptyCells = cells.AsValueEnumerable().Where(c => c.MergeUnit == null).ToArray();
 
 			if (emptyCells.Length > 0)
 			{
 				int randomIndex = Random.Range(0, emptyCells.Length);
 
 				GridCell cell = emptyCells[randomIndex];
-				cell.SetItem(mergeItem);
+				cell.SetItem(mergeUnit);
 				return true;
 			}
 

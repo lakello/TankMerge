@@ -16,5 +16,7 @@ MonoBehaviour:
     Items:
     - Category: Game
       Name: Control
+    - Category: Game
+      Name: Fight
     - Category: None
       Name: None

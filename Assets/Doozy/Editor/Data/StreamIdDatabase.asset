@@ -13,4 +13,8 @@ MonoBehaviour:
   m_Name: StreamIdDatabase
   m_EditorClassIdentifier: 
   Database:
-    Items: []
+    Items:
+    - Category: Game
+      Name: Fight
+    - Category: None
+      Name: None

@@ -135,6 +135,8 @@ GameObject:
   m_Component:
   - component: {fileID: 920076861613069895}
   - component: {fileID: 7554022100711472949}
+  - component: {fileID: -9164192512157721433}
+  - component: {fileID: 6679674686181310519}
   m_Layer: 0
   m_Name: Chaos
   m_TagString: Untagged
@@ -172,6 +174,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7144597b35974e8fa3ce82ad86515de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
+--- !u!114 &-9164192512157721433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702464969600081173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d80a0b6410744525a78352424ccf7ab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.Health
+--- !u!114 &6679674686181310519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2702464969600081173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2b7ebe9d62e460f9c20a3d1cf75b887, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.BattleUnit
+  health: {fileID: -9164192512157721433}
 --- !u!1 &2720941612461746111
 GameObject:
   m_ObjectHideFlags: 0

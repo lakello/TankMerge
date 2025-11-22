@@ -1,41 +1,38 @@
-namespace miniit.ENTRYPOINT
+namespace MiniIT.ENTRYPOINT
 {
-	using GAME.Settings;
-	using INPUT;
-	using NaughtyAttributes.Core.DrawerAttributes;
-	using UnityEngine;
-	using UnityEngine.SceneManagement;
-	using UtilsModule.Disposable;
-	using UtilsModule.Execute;
-	using UtilsModule.Execute.Interfaces;
-	using UtilsModule.Other;
+    using GAME.Settings;
+    using INPUT;
+    using NaughtyAttributes.Core.DrawerAttributes;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
+    using UtilsModule.Disposable;
+    using UtilsModule.Execute;
+    using UtilsModule.Execute.Interfaces;
+    using UtilsModule.Other;
 
-	public class ProjectBootstrap : MonoBehaviour, IExecuteHolder
-	{
-		[Scene]
-		[SerializeField]
-		private string gameSceneName;
-		[SerializeField]
-		private ItemsConfig itemsConfig;
+    public class ProjectBootstrap : MonoBehaviour, IExecuteHolder
+    {
+        [Scene] [SerializeField] private string     gameSceneName;
+        [SerializeField]         private TankConfig tankConfig;
 
-		public ExecuteMethod Method => ExecuteMethod.Awake;
-		public int Priority { get; set; }
+        public ExecuteMethod Method => ExecuteMethod.Awake;
+        public int Priority { get; set; }
 
-		public Executor GetExecutor()
-		{
-			return new ExecutorSync(Init);
-		}
+        public Executor GetExecutor()
+        {
+            return new ExecutorSync(Init);
+        }
 
-		private void Init()
-		{
-			GlobalDisposableHolder.Create();
+        private void Init()
+        {
+            GlobalDisposableHolder.Create();
 
-			InputActions actions = new InputActions();
+            InputActions actions = new InputActions();
 
-			DI.Register(actions).DisposeOnQuitGame();
-			DI.Register(itemsConfig).DisposeOnQuitGame();
+            GlobalData.Container.Register(actions).DisposeOnQuitGame();
+            GlobalData.Container.Register(tankConfig).DisposeOnQuitGame();
 
-			SceneManager.LoadSceneAsync(gameSceneName);
-		}
-	}
+            SceneManager.LoadSceneAsync(gameSceneName);
+        }
+    }
 }

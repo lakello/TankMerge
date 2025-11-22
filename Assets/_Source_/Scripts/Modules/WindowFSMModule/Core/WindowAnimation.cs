@@ -41,7 +41,7 @@ namespace WindowFSMModule
 
 		private bool CheckValidState()
 		{
-			var machine = DI.Resolve<WindowStateMachine>();
+			var machine = GlobalData.Container.Resolve<WindowStateMachine>();
 
 			bool isValid = true;
 

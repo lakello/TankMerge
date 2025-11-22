@@ -21,7 +21,7 @@ namespace WindowFSMModule.Utils
 		private void Awake()
 		{
 			_canvas = GetComponent<Canvas>();
-			_windowStateMachine = DI.Resolve<WindowStateMachine>();
+			_windowStateMachine = GlobalData.Container.Resolve<WindowStateMachine>();
 			_orders = _ordersData.AsValueEnumerable().ToDictionary(o => o.State.Name, o => o.Order);
 		}
 

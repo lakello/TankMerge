@@ -14,7 +14,7 @@ namespace WindowFSMModule.Utils
 
 		private void Awake()
 		{
-			_windowStateMachine = DI.Resolve<WindowStateMachine>();
+			_windowStateMachine = GlobalData.Container.Resolve<WindowStateMachine>();
 			_windowStateMachine.StateChanged += OnStateChanged;
 		}
 

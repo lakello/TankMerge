@@ -1,121 +1,202 @@
 namespace UtilsModule.Execute
 {
-	using System;
-	using System.Collections.Generic;
-	using System.Linq;
-	using System.Threading;
-	using AYellowpaper;
-	using Cysharp.Threading.Tasks;
-	using Extensions;
-	using Interfaces;
-	using Sirenix.OdinInspector;
-	using UnityEngine;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using AYellowpaper;
+    using Cysharp.Threading.Tasks;
+    using Extensions;
+    using Interfaces;
+    using Other;
+    using Sirenix.OdinInspector;
+    using UnityEngine;
+    using ZLinq;
 
-	public class OrderExecutor : MonoBehaviour
-	{
-		[SerializeField]
-		private InterfaceReference<IExecuteHolder>[] _awakeExecutors;
-		[SerializeField]
-		private InterfaceReference<IExecuteHolder>[] _startExecutors;
+    public class OrderExecutor : MonoBehaviour
+    {
+        [SerializeField]
+        private Context _context;
+        [SerializeField]
+        private MonoContainer _monoContainer;
+        [SerializeField]
+        [ShowIf("IsScene")]
+        private InterfaceReference<IExecuteHolder>[] _awakeExecutors;
+        [SerializeField]
+        [ShowIf("IsScene")]
+        private InterfaceReference<IExecuteHolder>[] _startExecutors;
+        [SerializeField]
+        [ShowIf("IsLocal")]
+        private GameObjectExecutorsHolder[] _executorHolders;
 
-		private CancellationTokenSource _source;
+        private CancellationTokenSource _source;
 
-		[Button]
-		private void FindExecutors()
-		{
-			SetIndexes();
+        private bool IsScene => _context == Context.Scene;
+        private bool IsLocal => _context == Context.Local;
 
-			var objects = FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+        private enum Context
+        {
+            Scene,
+            Local,
+        }
 
-			List<IExecuteHolder> executors = new List<IExecuteHolder>();
+        [Button]
+        [ShowIf("IsScene")]
+        private void FindExecutors()
+        {
+            SetIndexes();
 
-			foreach (var t in objects)
-			{
-				var e = t.GetComponents<IExecuteHolder>();
+            GameObject[] objects = FindObjectsByType<GameObject>(FindObjectsInactive.Include, FindObjectsSortMode.None);
 
-				if (e is { Length: > 0 })
-				{
-					executors.AddRange(e);
-				}
-			}
+            List<IExecuteHolder> executors = new List<IExecuteHolder>();
 
-			_awakeExecutors = executors
-				.Where(e => e.Method == ExecuteMethod.Awake)
-				.OrderBy(e => e.Priority)
-				.Select(e => new InterfaceReference<IExecuteHolder>(e))
-				.ToArray();
+            foreach (var t in objects)
+            {
+                var e = t.GetComponents<IExecuteHolder>();
 
-			_startExecutors = executors
-				.Where(e => e.Method == ExecuteMethod.Start)
-				.OrderBy(e => e.Priority)
-				.Select(e => new InterfaceReference<IExecuteHolder>(e))
-				.ToArray();
+                if (e is { Length: > 0 })
+                {
+                    executors.AddRange(e);
+                }
+            }
 
-			this.SetDirty();
-		}
+            _awakeExecutors = executors
+                .Where(e => e.Method == ExecuteMethod.Awake)
+                .OrderBy(e => e.Priority)
+                .Select(e => new InterfaceReference<IExecuteHolder>(e))
+                .ToArray();
 
-		private void SetIndexes()
-		{
-			if (_awakeExecutors is { Length: > 0 })
-			{
-				Set(_awakeExecutors);
-			}
+            _startExecutors = executors
+                .Where(e => e.Method == ExecuteMethod.Start)
+                .OrderBy(e => e.Priority)
+                .Select(e => new InterfaceReference<IExecuteHolder>(e))
+                .ToArray();
 
-			if (_startExecutors is { Length: > 0 })
-			{
-				Set(_startExecutors);
-			}
+            this.SetDirty();
 
-			return;
+            return;
 
-			void Set(InterfaceReference<IExecuteHolder>[] executors)
-			{
-				for (int i = 0; i < executors.Length; i++)
-				{
-					executors[i].Value.Priority = i;
-				}
-			}
-		}
+            void SetIndexes()
+            {
+                if (_awakeExecutors is { Length: > 0 })
+                {
+                    Set(_awakeExecutors);
+                }
 
-		private void Awake()
-		{
-			Handle(_awakeExecutors).Forget();
-		}
+                if (_startExecutors is { Length: > 0 })
+                {
+                    Set(_startExecutors);
+                }
 
-		private void Start()
-		{
-			Handle(_startExecutors).Forget();
-		}
+                return;
 
-		private async UniTaskVoid Handle(InterfaceReference<IExecuteHolder>[] executors)
-		{
-			_source?.Cancel();
-			_source = new CancellationTokenSource();
+                void Set(InterfaceReference<IExecuteHolder>[] executors)
+                {
+                    for (int i = 0; i < executors.Length; i++)
+                    {
+                        executors[i].Value.Priority = i;
+                    }
+                }
+            }
+        }
 
-			foreach (var executor in executors.Select(e => e.Value.GetExecutor()))
-			{
-				if (executor == null)
-				{
-					continue;
-				}
-				
-				switch (executor.Mode)
-				{
-					case ExecuteMode.Async:
-						await executor.ExecuteAsync();
+        private void Awake()
+        {
+            switch (_context)
+            {
+                case Context.Scene:
+                    Handle(_awakeExecutors
+                            .AsValueEnumerable()
+                            .Select(e => e.Value.GetExecutor())
+                            .ToArray())
+                        .Forget();
+                    break;
+                case Context.Local:
+                    Handle(GetLocalExecutors(ExecuteMethod.Awake)).Forget();
+                    break;
 
-						break;
-					case ExecuteMode.AsyncForget:
-						executor.ExecuteAsync().Forget();
+                default: throw new ArgumentOutOfRangeException();
+            }
+        }
 
-						break;
-					case ExecuteMode.Sync:
-						executor.Execute();
+        private void Start()
+        {
+            switch (_context)
+            {
+                case Context.Scene:
+                    Handle(_startExecutors
+                            .AsValueEnumerable()
+                            .Select(e => e.Value.GetExecutor())
+                            .ToArray())
+                        .Forget();
+                    break;
+                case Context.Local:
+                    Handle(GetLocalExecutors(ExecuteMethod.Start)).Forget();
+                    break;
 
-						break;
-					default: throw new ArgumentOutOfRangeException();
-				}
-			}
-		}
-	}
+                default: throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        private Executor[] GetLocalExecutors(ExecuteMethod method)
+        {
+            return _executorHolders.AsValueEnumerable()
+                .SelectMany(e => e.Holders)
+                .Where(e => e.Method == method)
+                .Select(e => e.GetExecutor())
+                .ToArray();
+        }
+
+        private async UniTaskVoid Handle(Executor[] executors)
+        {
+            _source?.Cancel();
+            _source = new CancellationTokenSource();
+
+            foreach (var executor in executors)
+            {
+                if (executor == null)
+                {
+                    continue;
+                }
+
+                switch (executor.Mode)
+                {
+                    case ExecuteMode.Async:
+                        if (executor.NeedContainer)
+                        {
+                            await executor.ExecuteAsync(_monoContainer.Container);
+                        }
+                        else
+                        {
+                            await executor.ExecuteAsync();
+                        }
+
+                        break;
+                    case ExecuteMode.AsyncForget:
+                        if (executor.NeedContainer)
+                        {
+                            executor.ExecuteAsync(_monoContainer.Container).Forget();
+                        }
+                        else
+                        {
+                            executor.ExecuteAsync().Forget();
+                        }
+
+                        break;
+                    case ExecuteMode.Sync:
+                        if (executor.NeedContainer)
+                        {
+                            executor.Execute(_monoContainer.Container);
+                        }
+                        else
+                        {
+                            executor.Execute();
+                        }
+
+                        break;
+                    default: throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+    }
 }

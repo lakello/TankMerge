@@ -39,7 +39,7 @@ namespace WindowFSMModule
 
 		public async UniTaskVoid Hide(CancellationToken token)
 		{
-			if (gameObject.activeSelf == false && DI.Resolve<WindowStateMachine>().CurrentState != WindowType)
+			if (gameObject.activeSelf == false && GlobalData.Container.Resolve<WindowStateMachine>().CurrentState != WindowType)
 			{
 				return;
 			}

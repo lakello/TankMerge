@@ -1,35 +1,40 @@
-namespace miniit.ENTRYPOINT
+namespace MiniIT.ENTRYPOINT
 {
-	using INPUT;
-	using UnityEngine;
-	using UtilsModule.Disposable;
-	using UtilsModule.Execute;
-	using UtilsModule.Execute.Interfaces;
-	using UtilsModule.Other;
+    using GAME.MERGE.UNIT;
+    using INPUT;
+    using Sirenix.OdinInspector;
+    using UnityEngine;
+    using UtilsModule.Disposable;
+    using UtilsModule.Execute;
+    using UtilsModule.Execute.Interfaces;
+    using UtilsModule.Other;
 
-	public class GameBootstrap : MonoBehaviour, IExecuteHolder
-	{
-		public ExecuteMethod Method => ExecuteMethod.Awake;
-		public int Priority { get; set; }
+    public class GameBootstrap : SerializedMonoBehaviour, IExecuteHolder
+    {
+        [SerializeField] private MergeUnit unitPrefab;
 
-		public Executor GetExecutor()
-		{
-			return new ExecutorSync(Init);
-		}
+        public ExecuteMethod Method => ExecuteMethod.Awake;
+        public int Priority { get; set; }
 
-		private void Init()
-		{
-			SceneDisposableHolder.Create(gameObject.scene.name);
+        public Executor GetExecutor()
+        {
+            return new ExecutorSync(Init);
+        }
 
-			DI.Resolve<InputActions>().Enable();
-		}
+        private void Init()
+        {
+            SceneDisposableHolder.Create(gameObject.scene.name);
+            GlobalData.Container.Resolve<InputActions>().Enable();
 
-		private void OnDisable()
-		{
-			if (DI.TryResolve(out InputActions input))
-			{
-				input.Disable();
-			}
-		}
-	}
+            MergeUnit.InitPool(unitPrefab);
+        }
+
+        private void OnDisable()
+        {
+            if (GlobalData.Container.TryResolve(out InputActions input))
+            {
+                input.Disable();
+            }
+        }
+    }
 }

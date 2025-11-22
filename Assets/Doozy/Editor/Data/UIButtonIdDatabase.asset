@@ -15,6 +15,10 @@ MonoBehaviour:
   Database:
     Items:
     - Category: Control
+      Name: Back
+    - Category: Control
       Name: Buy
+    - Category: Control
+      Name: Fight
     - Category: None
       Name: None
