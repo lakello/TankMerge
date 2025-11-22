@@ -3,6 +3,7 @@ namespace MiniIT.GAME.Entities
     using System;
     using Battle;
     using R3;
+    using Settings;
     using UnityEngine;
     using UtilsModule.Extensions;
 
@@ -42,9 +43,14 @@ namespace MiniIT.GAME.Entities
             disposable?.Dispose();
         }
 
-        public void Init(BattleData data)
+        public void Init(TankLevelConfig config)
         {
-            health.Init(data.MaxHealth);
+            health.Init(config.HealthMultiplier);
+            attaker.Init(config.DamageMultiplier);
+        }
+
+        public void Run(BattleData data)
+        {
             attaker.StartAttack(data);
             selfFraction = data.SelfFraction;
         }

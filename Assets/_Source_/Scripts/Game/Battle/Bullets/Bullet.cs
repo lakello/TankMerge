@@ -6,15 +6,15 @@ namespace MiniIT.GAME.Battle
 
     public class Bullet : IDisposable
     {
-        private IBulletBehaviour behaviour;
-        private Health           targetHealth;
+        private IBulletBehaviour    behaviour;
+        private BulletBehaviourData targetData;
 
         private CancellationTokenSource ctx = null;
 
-        public Bullet(IBulletBehaviour bulletBehaviour, Health health)
+        public Bullet(IBulletBehaviour bulletBehaviour, BulletBehaviourData data)
         {
             behaviour = bulletBehaviour;
-            targetHealth = health;
+            targetData = data;
             ctx = new CancellationTokenSource();
 
             UpdateBehaviour(ctx.Token).Forget();
@@ -23,15 +23,15 @@ namespace MiniIT.GAME.Battle
         public void Dispose()
         {
             ctx?.Cancel();
-            
+
             behaviour = null;
-            targetHealth = null;
+            targetData = null;
             ctx = null;
         }
 
         private async UniTaskVoid UpdateBehaviour(CancellationToken token)
         {
-            behaviour.Init(targetHealth);
+            behaviour.Init(targetData);
 
             while (token.IsCancellationRequested == false)
             {

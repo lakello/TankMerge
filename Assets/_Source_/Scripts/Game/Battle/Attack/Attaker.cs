@@ -15,6 +15,7 @@ namespace MiniIT.GAME.Battle
         private IBulletBehaviour bulletBehaviour;
 
         private Fraction targetFraction;
+        private float    multiplier;
 
         private CancellationTokenSource ctx = null;
 
@@ -23,9 +24,15 @@ namespace MiniIT.GAME.Battle
             ctx?.Cancel();
         }
 
+        public void Init(float damageMultiplier)
+        {
+            multiplier = damageMultiplier;
+        }
+
         public void StartAttack(BattleData data)
         {
             targetFraction = data.TargetFraction;
+            
 
             ctx = new CancellationTokenSource();
 
@@ -39,26 +46,30 @@ namespace MiniIT.GAME.Battle
 
         private async UniTaskVoid AttackBehaviour(CancellationToken token)
         {
-            Health targetHealth = null;
+            BulletBehaviourData bulletBehaviourData = new BulletBehaviourData()
+            {
+                DamageMultiplier = multiplier,
+            };
 
             while (token.IsCancellationRequested == false)
             {
-                if (targetHealth == null || targetHealth.IsAlive == false)
+                if (bulletBehaviourData.TargetHealth == null || bulletBehaviourData.TargetHealth.IsAlive == false)
                 {
-                    targetHealth = GlobalData.Container.Resolve<BattleTargetHolder>().GetRandomTargetHealth(targetFraction);
+                    bulletBehaviourData.TargetHealth =
+                        GlobalData.Container.Resolve<BattleTargetHolder>().GetRandomTargetHealth(targetFraction);
                 }
 
-                if (targetHealth != null)
+                if (bulletBehaviourData.TargetHealth != null)
                 {
-                    if (tower.IsLook(targetHealth.transform.position) == false)
+                    if (tower.IsLook(bulletBehaviourData.TargetHealth.transform.position) == false)
                     {
-                        tower.Look(targetHealth.transform.position);
+                        tower.Look(bulletBehaviourData.TargetHealth.transform.position);
 
                         await UniTask.Yield();
                         continue;
                     }
 
-                    _ = new Bullet(bulletBehaviour, targetHealth);
+                    _ = new Bullet(bulletBehaviour, bulletBehaviourData);
                 }
 
                 await UniTask.WaitForSeconds(reloadTime, cancellationToken: token);

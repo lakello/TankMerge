@@ -17,7 +17,7 @@ namespace MiniIT.GAME.MERGE.UNIT
         [SerializeField] private Transform viewContainer;
 
         private Tank       currentTank;
-        private TankConfig tankConfig;
+        private TankDataHolder tankDataHolder;
         private DContainer container;
 
         public static ObjectPool<MergeUnit> Pool { get; private set; }
@@ -48,12 +48,12 @@ namespace MiniIT.GAME.MERGE.UNIT
 
         private void OnEnable()
         {
-            if (tankConfig == null)
+            if (tankDataHolder == null)
             {
                 return;
             }
 
-            currentTank = tankConfig.GetTankByLevel(CurrentLevel);
+            currentTank = tankDataHolder.GetTankByLevel(CurrentLevel);
             currentTank.transform.SetParent(viewContainer);
             currentTank.transform.localPosition = Vector3.zero;
             currentTank.transform.localRotation = Quaternion.identity;
@@ -74,7 +74,7 @@ namespace MiniIT.GAME.MERGE.UNIT
             }
             
             Container.Release<Tank>();
-            tankConfig.ReleaseTank(currentTank, CurrentLevel);
+            tankDataHolder.ReleaseTank(currentTank, CurrentLevel);
         }
 
         public Executor GetExecutor()
@@ -83,7 +83,7 @@ namespace MiniIT.GAME.MERGE.UNIT
             {
                 container = c;
                 container.Register(this);
-                tankConfig = GlobalData.Container.Resolve<TankConfig>();
+                tankDataHolder = GlobalData.Container.Resolve<TankDataHolder>();
 
                 OnEnable();
             });

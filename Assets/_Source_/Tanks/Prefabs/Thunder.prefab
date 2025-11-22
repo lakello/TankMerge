@@ -515,6 +515,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4798433855913076066}
+  - component: {fileID: 7388127239184680128}
   m_Layer: 0
   m_Name: TankTurret4
   m_TagString: Untagged
@@ -541,6 +542,20 @@ Transform:
   - {fileID: 6292819314116581593}
   m_Father: {fileID: 2115376903954814562}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7388127239184680128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5322311961237028824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe8312d46a144bcb1bf4d199cf1d400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.Battle.Tower
+  rotateSpeed: 5
+  angleThreshold: 2
 --- !u!1 &5342536858968701737
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7144597b35974e8fa3ce82ad86515de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
+  attaker: {fileID: 1611220049567699608}
+  health: {fileID: -4421762942223847486}
 --- !u!114 &-4421762942223847486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -970,6 +987,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80a0b6410744525a78352424ccf7ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.Health
+  maxHealth: 300
 --- !u!114 &1611220049567699608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -982,7 +1000,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b7ebe9d62e460f9c20a3d1cf75b887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.BattleUnit
-  health: {fileID: -4421762942223847486}
+  tower: {fileID: 7388127239184680128}
+  reloadTime: 3
+  bulletBehaviour:
+    rid: 1876127979945853004
+  references:
+    version: 2
+    RefIds:
+    - rid: 1876127979945853004
+      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.Battle, asm: Assembly-CSharp}
+      data:
+        viewPrefab: {fileID: 8202644951890263050, guid: 46099dc6620fb95458abaaf633e19169, type: 3}
+        startPoint: {fileID: 4660923628744035451}
+        dealDamageDistance: 0.1
+        defaultDamage: 20
+        speed: 10
 --- !u!1 &9209944160729769985
 GameObject:
   m_ObjectHideFlags: 0

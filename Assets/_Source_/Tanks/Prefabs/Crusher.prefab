@@ -203,6 +203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7144597b35974e8fa3ce82ad86515de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
+  attaker: {fileID: 1999325355155702895}
+  health: {fileID: 6358992674302171619}
 --- !u!114 &6358992674302171619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80a0b6410744525a78352424ccf7ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.Health
+  maxHealth: 300
 --- !u!114 &1999325355155702895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,7 +230,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b7ebe9d62e460f9c20a3d1cf75b887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.BattleUnit
-  health: {fileID: 6358992674302171619}
+  tower: {fileID: 7286715938048006511}
+  reloadTime: 3
+  bulletBehaviour:
+    rid: 1876127979945853005
+  references:
+    version: 2
+    RefIds:
+    - rid: 1876127979945853005
+      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.Battle, asm: Assembly-CSharp}
+      data:
+        viewPrefab: {fileID: 8202644951890263050, guid: 46099dc6620fb95458abaaf633e19169, type: 3}
+        startPoint: {fileID: 5828252516082884851}
+        dealDamageDistance: 0.1
+        defaultDamage: 20
+        speed: 10
 --- !u!1 &1080902460292215550
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,6 +366,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1166203115914402355}
+  - component: {fileID: 7286715938048006511}
   m_Layer: 0
   m_Name: TankTurret2
   m_TagString: Untagged
@@ -375,6 +393,20 @@ Transform:
   - {fileID: 7063981840839421248}
   m_Father: {fileID: 5932354952821132514}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7286715938048006511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973983060449312905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe8312d46a144bcb1bf4d199cf1d400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.Battle.Tower
+  rotateSpeed: 5
+  angleThreshold: 2
 --- !u!1 &2494121721173981445
 GameObject:
   m_ObjectHideFlags: 0

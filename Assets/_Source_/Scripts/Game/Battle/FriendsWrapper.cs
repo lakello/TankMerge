@@ -13,11 +13,11 @@ namespace MiniIT.GAME.Battle
         [SerializeField] private GridCell[] cells;
 
         private BattleTargetHolder battleTargetHolder;
-        private TankConfig         tankConfig;
+        private TankDataHolder         tankDataHolder;
 
         private void Awake()
         {
-            tankConfig = GlobalData.Container.Resolve<TankConfig>();
+            tankDataHolder = GlobalData.Container.Resolve<TankDataHolder>();
         }
 
         private void OnEnable()
@@ -56,20 +56,19 @@ namespace MiniIT.GAME.Battle
                 Fraction.Friends,
                 () =>
                 {
-                    Tank tank = tankConfig.GetTankByLevel(cell.MergeUnit.CurrentLevel);
+                    Tank tank = tankDataHolder.GetTankByLevel(cell.MergeUnit.CurrentLevel);
 
-                    tank.Init(new BattleData
+                    tank.Run(new BattleData
                     {
                         SelfFraction = Fraction.Friends,
                         TargetFraction = Fraction.Enemy,
-                        MaxHealth = 100
                     });
 
                     return new TankSpawnData
                     {
                         Tank = tank,
                         Level = cell.MergeUnit.CurrentLevel,
-                        Removed = data => tankConfig.ReleaseTank(data.Tank, data.Level)
+                        Removed = data => tankDataHolder.ReleaseTank(data.Tank, data.Level)
                     };
                 }))
             {

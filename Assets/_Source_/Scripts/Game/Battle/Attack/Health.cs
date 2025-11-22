@@ -5,12 +5,15 @@ namespace MiniIT.GAME.Battle
 
 	public class Health : MonoBehaviour
 	{
+		[SerializeField]
+		private float maxHealth;
+		
 		public bool IsAlive => Current is { Value: > 0, };
 		public ReactiveProperty<float> Current { get; private set; } = new ReactiveProperty<float>(1);
 
-		public void Init(float maxHealth)
+		public void Init(float healthMultiplier)
 		{
-			Current.Value = maxHealth;
+			Current.Value = maxHealth * healthMultiplier;
 		}
 
 		public void TakeDamage(float damage)

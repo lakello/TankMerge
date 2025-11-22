@@ -13,7 +13,7 @@ namespace MiniIT.ENTRYPOINT
     public class ProjectBootstrap : MonoBehaviour, IExecuteHolder
     {
         [Scene] [SerializeField] private string     gameSceneName;
-        [SerializeField]         private TankConfig tankConfig;
+        [SerializeField]         private TankDataHolder tankDataHolder;
 
         public ExecuteMethod Method => ExecuteMethod.Awake;
         public int Priority { get; set; }
@@ -30,7 +30,7 @@ namespace MiniIT.ENTRYPOINT
             InputActions actions = new InputActions();
 
             GlobalData.Container.Register(actions).DisposeOnQuitGame();
-            GlobalData.Container.Register(tankConfig).DisposeOnQuitGame();
+            GlobalData.Container.Register(tankDataHolder).DisposeOnQuitGame();
 
             SceneManager.LoadSceneAsync(gameSceneName);
         }

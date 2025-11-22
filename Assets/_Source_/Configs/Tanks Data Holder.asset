@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69fbdac6463243739839b47e30d0024c, type: 3}
-  m_Name: Tanks Config
+  m_Name: Tanks Data Holder
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Settings.ItemsConfig
   serializationData:
     SerializedFormat: 2
@@ -21,6 +21,59 @@ MonoBehaviour:
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes: []
+  damageMultiplier:
+    range: {x: 1, y: 10}
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  healthMultiplier:
+    range: {x: 1, y: 10}
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2
+        outSlope: 2
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  levelRange: {x: 1, y: 100}
   tanks:
   - {fileID: 5556746478135060997, guid: de6a33d499d07db40bf3b6e029bf10b6, type: 3}
   - {fileID: 1045368688392059872, guid: 69015384c6a9b1e4db636bb8e7a5d2ba, type: 3}

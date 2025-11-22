@@ -11,16 +11,18 @@ namespace MiniIT.GAME.Battle
         [SerializeField]
         private float dealDamageDistance;
         [SerializeField]
-        private float damage;
+        private float defaultDamage;
         [SerializeField]
         private float speed = 10f;
 
+        private float damage;
         private BulletView view;
         private Health     targetHealth;
 
-        protected override void InternalInit(Health health)
+        protected override void InternalInit(BulletBehaviourData data)
         {
-            targetHealth = health;
+            targetHealth = data.TargetHealth;
+            damage = defaultDamage * data.DamageMultiplier;
 
             view = BulletViewPoolHolder.Value.Get();
             view.transform.position = startPoint.position;

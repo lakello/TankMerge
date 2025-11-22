@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7144597b35974e8fa3ce82ad86515de5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
+  attaker: {fileID: 5861363880449083308}
+  health: {fileID: -4393935825302131893}
 --- !u!114 &-4393935825302131893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80a0b6410744525a78352424ccf7ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.Health
+  maxHealth: 300
 --- !u!114 &5861363880449083308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +252,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b7ebe9d62e460f9c20a3d1cf75b887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.BattleUnit
-  health: {fileID: -4393935825302131893}
+  tower: {fileID: 4862830313202920956}
+  reloadTime: 3
+  bulletBehaviour:
+    rid: 1876127979945853003
+  references:
+    version: 2
+    RefIds:
+    - rid: 1876127979945853003
+      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.Battle, asm: Assembly-CSharp}
+      data:
+        viewPrefab: {fileID: 8202644951890263050, guid: 46099dc6620fb95458abaaf633e19169, type: 3}
+        startPoint: {fileID: 7193112378711610976}
+        dealDamageDistance: 0.1
+        defaultDamage: 20
+        speed: 10
 --- !u!1 &2594443887832802848
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +663,7 @@ GameObject:
   - component: {fileID: 8747193624797659068}
   - component: {fileID: 5677805291600556057}
   - component: {fileID: 7579393922573518035}
+  - component: {fileID: 4862830313202920956}
   m_Layer: 0
   m_Name: TankTurret
   m_TagString: Untagged
@@ -727,6 +745,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &4862830313202920956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8227960990106412294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe8312d46a144bcb1bf4d199cf1d400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.Battle.Tower
+  rotateSpeed: 5
+  angleThreshold: 2
 --- !u!1 &9193778898109619895
 GameObject:
   m_ObjectHideFlags: 0

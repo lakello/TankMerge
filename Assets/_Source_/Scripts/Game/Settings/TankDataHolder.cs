@@ -7,10 +7,14 @@ namespace MiniIT.GAME.Settings
     using UnityEngine.Pool;
 
     [CreateAssetMenu(menuName = "Game Settings/UnitConfig")]
-    public class TankConfig : SerializedScriptableObject
+    public class TankDataHolder : SerializedScriptableObject
     {
-        [SerializeField] private Tank[]     tanks;
-        [SerializeField] private Material[] skins;
+        [BoxGroup("Damage")] [SerializeField] private MultiplierData damageMultiplier;
+        [BoxGroup("Health")] [SerializeField] private MultiplierData healthMultiplier;
+
+        [BoxGroup("General")] [SerializeField] private Vector2    levelRange;
+        [BoxGroup("General")] [SerializeField] private Tank[]     tanks;
+        [BoxGroup("General")] [SerializeField] private Material[] skins;
 
         private Dictionary<int, ObjectPool<Tank>> pools;
         private Transform                         parent;
@@ -26,7 +30,15 @@ namespace MiniIT.GAME.Settings
             {
                 pools.Add(index, new ObjectPool<Tank>(
                     createFunc: () => Instantiate(tanks[index], parent),
-                    actionOnGet: tank => tank.gameObject.SetActive(true),
+                    actionOnGet: tank =>
+                    {
+                        tank.Init(new TankLevelConfig
+                        {
+                            DamageMultiplier = damageMultiplier.Get(level, levelRange),
+                            HealthMultiplier = healthMultiplier.Get(level, levelRange),
+                        });
+                        tank.gameObject.SetActive(true);
+                    },
                     actionOnRelease: tank =>
                     {
                         tank.transform.SetParent(parent);

@@ -148,10 +148,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f18bfcdb2ea340bca8619e6ce9c199ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UtilsModule::UtilsModule.Execute.OrderExecutor
+  _context: 0
   _monoContainer: {fileID: 0}
   _awakeExecutors:
   - _underlyingValue: {fileID: 2018516385}
   _startExecutors: []
+  _executorHolders: []
 --- !u!4 &317160859
 Transform:
   m_ObjectHideFlags: 0
@@ -525,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::_Source_.Scripts.EntryPoint.Bootstrap
   gameSceneName: GameScene
-  tankConfig: {fileID: 11400000, guid: 291195b661c35f945aa68456e3204f13, type: 2}
+  tankDataHolder: {fileID: 11400000, guid: 291195b661c35f945aa68456e3204f13, type: 2}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

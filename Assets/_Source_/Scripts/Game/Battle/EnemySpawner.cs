@@ -17,11 +17,11 @@ namespace MiniIT.GAME.Battle
 
         private CancellationTokenSource ctx = new CancellationTokenSource();
         private BattleTargetHolder      battleTargetHolder;
-        private TankConfig              config;
+        private TankDataHolder              dataHolder;
 
         private void Start()
         {
-            config = GlobalData.Container.Resolve<TankConfig>();
+            dataHolder = GlobalData.Container.Resolve<TankDataHolder>();
             battleTargetHolder = GlobalData.Container.Resolve<BattleTargetHolder>();
             battleTargetHolder.UnitAdded += OnUnitRemoved;
             battleTargetHolder.UnitRemoved += OnUnitRemoved;
@@ -76,20 +76,19 @@ namespace MiniIT.GAME.Battle
                     () =>
                     {
                         int level = Random.Range(1, MergeUnit.MaxLevel + 1);
-                        Tank tank = config.GetTankByLevel(level);
+                        Tank tank = dataHolder.GetTankByLevel(level);
 
-                        tank.Init(new BattleData
+                        tank.Run(new BattleData
                         {
                             SelfFraction = Fraction.Enemy,
                             TargetFraction = Fraction.Friends,
-                            MaxHealth = 100
                         });
 
                         return new TankSpawnData
                         {
                             Tank = tank,
                             Level = level,
-                            Removed = data => config.ReleaseTank(data.Tank, data.Level)
+                            Removed = data => dataHolder.ReleaseTank(data.Tank, data.Level)
                         };
                     });
             }

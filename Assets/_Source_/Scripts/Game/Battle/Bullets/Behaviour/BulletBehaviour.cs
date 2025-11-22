@@ -14,10 +14,10 @@ namespace MiniIT.GAME.Battle
 
 #region IBulletBehaviour Members
 
-        public void Init(Health health)
+        public void Init(BulletBehaviourData data)
         {
             BulletViewPoolHolder.InitPool(viewPrefab);
-            InternalInit(health);
+            InternalInit(data);
         }
 
         public abstract void Move();
@@ -26,7 +26,7 @@ namespace MiniIT.GAME.Battle
 
 #endregion
         
-        protected abstract void InternalInit(Health health);
+        protected abstract void InternalInit(BulletBehaviourData data);
 
         protected static class BulletViewPoolHolder
         {
