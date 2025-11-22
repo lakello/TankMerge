@@ -35,14 +35,12 @@ namespace UtilsModule.Disposable
 
 		public static void Register(IDisposable disposable, string sceneName)
 		{
-			if (s_holders.TryGetValue(sceneName, out var holder))
+			if (s_holders.ContainsKey(sceneName) == false)
 			{
-				holder._disposables.Add(disposable);
+				Create(sceneName);
 			}
-			else
-			{
-				throw new ArgumentException($"{nameof(SceneDisposableHolder)} in {sceneName} not instance");
-			}
+			
+			s_holders[sceneName]._disposables.Add(disposable);
 		}
 	}
 }

@@ -1,5 +1,6 @@
 namespace MiniIT.ENTRYPOINT
 {
+    using GAME.PLAYER;
     using GAME.Settings;
     using INPUT;
     using NaughtyAttributes.Core.DrawerAttributes;
@@ -12,7 +13,7 @@ namespace MiniIT.ENTRYPOINT
 
     public class ProjectBootstrap : MonoBehaviour, IExecuteHolder
     {
-        [Scene] [SerializeField] private string     gameSceneName;
+        [Scene] [SerializeField] private string         gameSceneName;
         [SerializeField]         private TankDataHolder tankDataHolder;
 
         public ExecuteMethod Method => ExecuteMethod.Awake;
@@ -30,6 +31,7 @@ namespace MiniIT.ENTRYPOINT
             InputActions actions = new InputActions();
 
             GlobalData.Container.Register(actions).DisposeOnQuitGame();
+            GlobalData.Container.Register(new Wallet()).DisposeOnQuitGame();
             GlobalData.Container.Register(tankDataHolder).DisposeOnQuitGame();
 
             SceneManager.LoadSceneAsync(gameSceneName);

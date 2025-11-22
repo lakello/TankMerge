@@ -12,12 +12,14 @@ namespace MiniIT.GAME.Settings
         [BoxGroup("Damage")] [SerializeField] private MultiplierData damageMultiplier;
         [BoxGroup("Health")] [SerializeField] private MultiplierData healthMultiplier;
 
-        [BoxGroup("General")] [SerializeField] private Vector2    levelRange;
-        [BoxGroup("General")] [SerializeField] private Tank[]     tanks;
-        [BoxGroup("General")] [SerializeField] private Material[] skins;
+        [BoxGroup("Reward")] [SerializeField] private MultiplierData takeDamageRewardMultiplier;
+        [BoxGroup("Reward")] [SerializeField] private MultiplierData deadRewardMultiplier;
 
-        private Dictionary<int, ObjectPool<Tank>> pools;
-        private Transform                         parent;
+        [BoxGroup("General")] [SerializeField] private Vector2 levelRange;
+        [BoxGroup("General")] [SerializeField] private Tank[]  tanks;
+
+        private Dictionary<int, ObjectPool<Tank>> pools  = null;
+        private Transform                         parent = null;
 
         public Tank GetTankByLevel(int level)
         {
@@ -36,6 +38,8 @@ namespace MiniIT.GAME.Settings
                         {
                             DamageMultiplier = damageMultiplier.Get(level, levelRange),
                             HealthMultiplier = healthMultiplier.Get(level, levelRange),
+                            TakeDamageRewardMultiplier = takeDamageRewardMultiplier.Get(level, levelRange),
+                            DeadRewardMultiplier = deadRewardMultiplier.Get(level, levelRange),
                         });
                         tank.gameObject.SetActive(true);
                     },
@@ -59,23 +63,6 @@ namespace MiniIT.GAME.Settings
             }
 
             pools[index].Release(tank);
-        }
-
-        public Material GetSkinByLevel(int level)
-        {
-            return skins[GetIndexByLevel(skins.Length, level)];
-        }
-
-        private T GetDataByLevel<T>(T[] data, int level)
-        {
-            int index = Mathf.Max(0, level - 1);
-
-            if (index < data.Length)
-            {
-                return data[index];
-            }
-
-            return data[data.Length % index];
         }
 
         private int GetIndexByLevel(int length, int level)

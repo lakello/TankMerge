@@ -4,6 +4,7 @@ namespace MiniIT.GAME.Battle
     using System.Collections.Generic;
     using Entities;
     using UnityEngine;
+    using UtilsModule.Disposable;
     using UtilsModule.Execute;
     using UtilsModule.Execute.Interfaces;
     using UtilsModule.Other;
@@ -30,7 +31,7 @@ namespace MiniIT.GAME.Battle
 
         private void Init()
         {
-            GlobalData.Container.Register(this);
+            GlobalData.Container.Register(this).DisposeOnExitScene(gameObject.scene.name);
 
             targets = new Dictionary<Fraction, TankSpawnData[]>()
             {

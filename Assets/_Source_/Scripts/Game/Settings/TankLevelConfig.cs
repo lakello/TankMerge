@@ -5,6 +5,8 @@ namespace MiniIT.GAME.Settings
     [Serializable]
     public struct TankLevelConfig
     {
+        public float DeadRewardMultiplier;
+        public float TakeDamageRewardMultiplier;
         public float DamageMultiplier;
         public float HealthMultiplier;
     }

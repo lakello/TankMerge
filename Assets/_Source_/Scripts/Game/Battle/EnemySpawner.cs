@@ -17,7 +17,7 @@ namespace MiniIT.GAME.Battle
 
         private CancellationTokenSource ctx = new CancellationTokenSource();
         private BattleTargetHolder      battleTargetHolder;
-        private TankDataHolder              dataHolder;
+        private TankDataHolder          dataHolder;
 
         private void Start()
         {
@@ -25,7 +25,7 @@ namespace MiniIT.GAME.Battle
             battleTargetHolder = GlobalData.Container.Resolve<BattleTargetHolder>();
             battleTargetHolder.UnitAdded += OnUnitRemoved;
             battleTargetHolder.UnitRemoved += OnUnitRemoved;
-            SpawnUnits(ctx.Token).Forget();
+            SpawnUnits(100, ctx.Token).Forget();
         }
 
         private void OnDestroy()
@@ -38,10 +38,10 @@ namespace MiniIT.GAME.Battle
         [Button]
         private void OnUnitRemoved(Fraction fraction)
         {
-            SpawnUnits(ctx.Token).Forget();
+            SpawnUnits(spawnChance, ctx.Token).Forget();
         }
 
-        private async UniTaskVoid SpawnUnits(CancellationToken token)
+        private async UniTaskVoid SpawnUnits(float chance, CancellationToken token)
         {
             if (token.IsCancellationRequested)
             {
@@ -49,7 +49,7 @@ namespace MiniIT.GAME.Battle
             }
 
             await UniTask.WaitForSeconds(cooldown, cancellationToken: token);
-            
+
             if (token.IsCancellationRequested)
             {
                 return;
@@ -66,7 +66,7 @@ namespace MiniIT.GAME.Battle
 
             for (int i = 0; i < count; i++)
             {
-                if (Chance.Default(spawnChance) == false)
+                if (Chance.Default(chance) == false)
                 {
                     continue;
                 }

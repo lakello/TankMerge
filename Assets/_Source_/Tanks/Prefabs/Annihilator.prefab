@@ -596,6 +596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
   attaker: {fileID: 5151786457163877728}
   health: {fileID: 7691004099766282222}
+  takeDamageReward: 100
+  deadReward: 200
 --- !u!114 &7691004099766282222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -634,7 +636,7 @@ MonoBehaviour:
         viewPrefab: {fileID: 8202644951890263050, guid: 46099dc6620fb95458abaaf633e19169, type: 3}
         startPoint: {fileID: 4713658550479917580}
         dealDamageDistance: 0.1
-        defaultDamage: 0
+        defaultDamage: 10
         speed: 10
 --- !u!1 &6029273034108869916
 GameObject:

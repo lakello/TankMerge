@@ -1,6 +1,7 @@
 namespace MiniIT.ENTRYPOINT
 {
     using GAME.MERGE.UNIT;
+    using GAME.PLAYER;
     using INPUT;
     using Sirenix.OdinInspector;
     using UnityEngine;
@@ -23,10 +24,11 @@ namespace MiniIT.ENTRYPOINT
 
         private void Init()
         {
-            SceneDisposableHolder.Create(gameObject.scene.name);
             GlobalData.Container.Resolve<InputActions>().Enable();
 
             MergeUnit.InitPool(unitPrefab);
+
+            new RewardHandler().DisposeOnExitScene(gameObject.scene.name);
         }
 
         private void OnDisable()

@@ -9,15 +9,18 @@ namespace MiniIT.GAME.Battle
 		private float maxHealth;
 		
 		public bool IsAlive => Current is { Value: > 0, };
-		public ReactiveProperty<float> Current { get; private set; } = new ReactiveProperty<float>(1);
+		public bool IsMax { get; private set; }
+		public ReactiveProperty<float> Current { get; } = new ReactiveProperty<float>(1);
 
 		public void Init(float healthMultiplier)
 		{
 			Current.Value = maxHealth * healthMultiplier;
+			IsMax = true;
 		}
 
 		public void TakeDamage(float damage)
 		{
+			IsMax = false;
 			Current.Value -= damage;
 		}
 	}
