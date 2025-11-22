@@ -38,7 +38,7 @@ namespace MiniIT.GAME.Battle
         [Button]
         private void OnUnitRemoved(Fraction fraction)
         {
-            SpawnUnits(spawnChance, ctx.Token).Forget();
+            SpawnUnits(battleTargetHolder.IsAllEmpty(Fraction.Enemy) ? 100 : spawnChance, ctx.Token).Forget();
         }
 
         private async UniTaskVoid SpawnUnits(float chance, CancellationToken token)

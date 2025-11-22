@@ -50,6 +50,11 @@ namespace MiniIT.GAME.Battle
             };
         }
 
+        public bool IsAllEmpty(Fraction fraction)
+        {
+            return targets[fraction].AsValueEnumerable().All(d => d.Tank == null);
+        }
+
         public int GetEmptyCount(Fraction fraction)
         {
             return targets[fraction].AsValueEnumerable().Count(d => d.Tank == null);

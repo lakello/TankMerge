@@ -1,59 +1,70 @@
 namespace MiniIT.GAME.MERGE.CELL
 {
-	using System;
-	using System.Collections.Generic;
-	using UNIT;
-	using UnityEngine;
-	using ZLinq;
-	using Random = UnityEngine.Random;
+    using System;
+    using System.Collections.Generic;
+    using UNIT;
+    using UnityEngine;
+    using UtilsModule.Other;
+    using ZLinq;
+    using Random = UnityEngine.Random;
 
-	public class CellsHolder : IDisposable
-	{
-		private readonly List<GridCell> cells;
+    public class CellsHolder : IDisposable
+    {
+        private readonly List<GridCell> cells;
 
-		public CellsHolder(List<GridCell> cells)
-		{
-			if (Instance != null)
-			{
-				Debug.LogWarning("Cannot initialize more than once");
+        public CellsHolder(List<GridCell> cells)
+        {
+            if (Instance != null)
+            {
+                Debug.LogWarning("Cannot initialize more than once");
 
-				return;
-			}
+                return;
+            }
 
-			this.cells = cells;
+            this.cells = cells;
 
-			Instance = this;
-		}
+            Instance = this;
+        }
 
-		public static CellsHolder Instance { get; private set; }
+        public static CellsHolder Instance { get; private set; }
 
-		public bool CanOccupyCell => cells.AsValueEnumerable().Any(c => c.MergeUnit == null);
+        public bool CanOccupyCell => cells.AsValueEnumerable().Any(c => c.MergeUnit == null);
 
-		public void Dispose()
-		{
-			Instance = null;
-		}
+        public void Dispose()
+        {
+            Instance = null;
+        }
 
-		public bool TryOccupyRandomCell(MergeUnit mergeUnit)
-		{
-			var emptyCells = cells.AsValueEnumerable().Where(c => c.MergeUnit == null).ToArray();
+        public bool TryOccupyRandomCell(MergeUnit mergeUnit)
+        {
+            var emptyCells = cells.AsValueEnumerable().Where(c => c.MergeUnit == null).ToArray();
 
-			if (emptyCells.Length > 0)
-			{
-				int randomIndex = Random.Range(0, emptyCells.Length);
+            if (emptyCells.Length > 0)
+            {
+                int randomIndex = Random.Range(0, emptyCells.Length);
 
-				GridCell cell = emptyCells[randomIndex];
-				cell.SetItem(mergeUnit);
-				return true;
-			}
+                GridCell cell = emptyCells[randomIndex];
+                cell.SetItem(mergeUnit);
 
-			return false;
-		}
+                if (GlobalData.Container.TryResolve(out PriceView view))
+                {
+                    view.UpdateView();
+                }
 
-		public void ReleaseCell(GridCell cell)
-		{
-			cell.Release();
-			cells.Add(cell);
-		}
-	}
+                return true;
+            }
+
+            return false;
+        }
+
+        public void ReleaseCell(GridCell cell)
+        {
+            cell.Release();
+
+            if (GlobalData.Container.TryResolve(out PriceView view))
+            {
+                view.UpdateView();
+            }
+        }
+    }
 }

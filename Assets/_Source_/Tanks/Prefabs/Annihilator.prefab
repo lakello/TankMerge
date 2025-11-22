@@ -596,8 +596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
   attaker: {fileID: 5151786457163877728}
   health: {fileID: 7691004099766282222}
-  takeDamageReward: 100
-  deadReward: 200
+  takeDamageReward: 1000
+  deadReward: 5000
 --- !u!114 &7691004099766282222
 MonoBehaviour:
   m_ObjectHideFlags: 0

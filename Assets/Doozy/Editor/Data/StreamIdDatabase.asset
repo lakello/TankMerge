@@ -16,5 +16,7 @@ MonoBehaviour:
     Items:
     - Category: Game
       Name: Fight
+    - Category: Game
+      Name: Merge
     - Category: None
       Name: None

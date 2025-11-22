@@ -3,6 +3,7 @@ namespace MiniIT.GAME
     using Doozy.Runtime.UIManager;
     using Doozy.Runtime.UIManager.Components;
     using MERGE;
+    using MERGE.CELL;
     using PLAYER;
     using UnityEngine;
     using UtilsModule.Other;
@@ -34,7 +35,7 @@ namespace MiniIT.GAME
         {
             if (selectionState == UISelectionState.Pressed)
             {
-                if (wallet.TryBuy(PriceHolder.Instance.Price))
+                if (CellsHolder.Instance.CanOccupyCell && wallet.TryBuy(PriceHolder.Instance.Price))
                 {
                     PriceHolder.Instance.NextPrice();
                     priceView.UpdateView();

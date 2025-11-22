@@ -20,7 +20,7 @@ namespace MiniIT.GAME.MERGE
 
         [ReadOnly] [SerializeField] private List<GridCell> cells;
 
-        public ExecuteMethod Method => ExecuteMethod.Start;
+        public ExecuteMethod Method => ExecuteMethod.Awake;
         public int Priority { get; set; }
 
         public Executor GetExecutor()

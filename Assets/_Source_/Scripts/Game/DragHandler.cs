@@ -15,8 +15,8 @@ namespace MiniIT.GAME
         [SerializeField] private LayerMask layerMask;
         [SerializeField] private float     holdHeight;
 
-        private InputActions inputActions = null;
-        private Camera       camera       = null;
+        private InputActions       inputActions = null;
+        private UnityEngine.Camera camera       = null;
 
         private GridCell                currentCell = null;
         private CancellationTokenSource ctx         = null;
@@ -26,7 +26,7 @@ namespace MiniIT.GAME
         private void Awake()
         {
             inputActions = GlobalData.Container.Resolve<InputActions>();
-            camera = Camera.main;
+            camera = UnityEngine.Camera.main;
         }
 
         private void OnEnable()

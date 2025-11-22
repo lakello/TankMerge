@@ -8,17 +8,19 @@ namespace MiniIT.GAME
         [SerializeField] private int   startPrice;
         [SerializeField] private float priceMultiplier;
 
-        public int Price { get; private set; }
+        private float price;
+
+        public int Price => (int)price;
 
         public void NextPrice()
         {
-            if (Price == 0)
+            if (price == 0)
             {
-                Price = startPrice;
+                price = startPrice;
             }
             else
             {
-                Price = (int)(Price * priceMultiplier);
+                price *= priceMultiplier;
             }
         }
     }

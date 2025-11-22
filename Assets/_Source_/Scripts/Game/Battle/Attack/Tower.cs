@@ -1,11 +1,24 @@
 namespace MiniIT.GAME.Battle
 {
+    using System;
     using UnityEngine;
 
     public class Tower : MonoBehaviour
     {
         [SerializeField]                   private float rotateSpeed    = 5f;
         [SerializeField, Range(0.1f, 10f)] private float angleThreshold = 2f;
+        
+        private Quaternion initialRotation;
+
+        private void Awake()
+        {
+            initialRotation = transform.rotation;
+        }
+
+        private void OnDisable()
+        {
+            transform.rotation = initialRotation;
+        }
 
         public bool IsLook(Vector3 target)
         {
