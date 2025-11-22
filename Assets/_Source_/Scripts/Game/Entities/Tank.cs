@@ -3,10 +3,12 @@ namespace MiniIT.GAME.Entities
     using System;
     using Battle;
     using MessageModule;
+    using Particles;
     using PLAYER.Messages;
     using R3;
     using Settings;
     using UnityEngine;
+    using UnityEngine.Pool;
     using UtilsModule.Extensions;
 
     public class Tank : MonoBehaviour
@@ -77,6 +79,11 @@ namespace MiniIT.GAME.Entities
 
             if (value <= 0)
             {
+                ObjectPool<ParticleSystem> pool = EffectHolder.Instance.GetPool(EffectType.Merge);
+                ParticleSystem particle = pool.Get();
+                particle.transform.position = transform.position;
+                pool.ReleaseParticle(particle).Forget();
+
                 Dead(this);
             }
         }

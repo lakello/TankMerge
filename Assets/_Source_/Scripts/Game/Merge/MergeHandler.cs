@@ -3,8 +3,10 @@ namespace MiniIT.GAME.MERGE
     using CELL;
     using MessageModule;
     using Messages;
+    using Particles;
     using UNIT;
     using UnityEngine;
+    using UnityEngine.Pool;
 
     public class MergeHandler : MonoBehaviour
     {
@@ -76,6 +78,11 @@ namespace MiniIT.GAME.MERGE
                         TargetCell = nearestCell,
                         Level = currentLevel,
                     }.Publish();
+
+                    ObjectPool<ParticleSystem> pool = EffectHolder.Instance.GetPool(EffectType.Merge);
+                    ParticleSystem particle = pool.Get();
+                    particle.transform.position = nearestCell.MergeUnit.transform.position;
+                    pool.ReleaseParticle(particle).Forget();
                 }
                 else
                 {

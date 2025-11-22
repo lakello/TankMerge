@@ -3,6 +3,9 @@ namespace MiniIT.GAME.Battle
     using System;
     using System.Threading;
     using Cysharp.Threading.Tasks;
+    using Particles;
+    using UnityEngine;
+    using UnityEngine.Pool;
 
     public class Bullet : IDisposable
     {
@@ -41,6 +44,11 @@ namespace MiniIT.GAME.Battle
                 }
                 else
                 {
+                    ObjectPool<ParticleSystem> pool = EffectHolder.Instance.GetPool(EffectType.Merge);
+                    ParticleSystem particle = pool.Get();
+                    particle.transform.position = targetData.TargetHealth.transform.position;
+                    pool.ReleaseParticle(particle).Forget();
+
                     Dispose();
                 }
 

@@ -4636,8 +4636,70 @@ Transform:
   m_Children:
   - {fileID: 1072902663}
   - {fileID: 1688082637}
+  - {fileID: 953786806}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &953786805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 953786806}
+  - component: {fileID: 953786807}
+  m_Layer: 0
+  m_Name: Effects Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &953786806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953786805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 952959369}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &953786807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953786805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf010a4924a74e629460d05ef10546b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.Particles.EffectHolder
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes: []
+  _mode: 1
+  data:
+  - Type: 0
+    ParticlePrefab: {fileID: 19806788, guid: c2f28a236b0696a4f90a994422019577, type: 3}
+  - Type: 1
+    ParticlePrefab: {fileID: 19848870, guid: a7c694f0877ea874fa57e033221095c3, type: 3}
+  - Type: 2
+    ParticlePrefab: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
 --- !u!1001 &961750701
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7109,6 +7171,7 @@ MonoBehaviour:
   _monoContainer: {fileID: 0}
   _awakeExecutors:
   - _underlyingValue: {fileID: 1922655752}
+  - _underlyingValue: {fileID: 953786807}
   - _underlyingValue: {fileID: 1092812742}
   - _underlyingValue: {fileID: 1688082638}
   - _underlyingValue: {fileID: 1328815957}
