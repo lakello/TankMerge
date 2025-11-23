@@ -360,8 +360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
   attaker: {fileID: 3486549473571733504}
   health: {fileID: 6924508393825454942}
-  takeDamageReward: 200
-  deadReward: 300
+  takeDamageReward: 60
+  deadReward: 150
 --- !u!114 &6924508393825454942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,18 +390,18 @@ MonoBehaviour:
   tower: {fileID: 5524137523355975194}
   reloadTime: 2
   bulletBehaviour:
-    rid: 1876127979945853000
+    rid: 1876128002336620619
   references:
     version: 2
     RefIds:
-    - rid: 1876127979945853000
-      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.Battle, asm: Assembly-CSharp}
+    - rid: 1876128002336620619
+      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.BATTLE, asm: Assembly-CSharp}
       data:
         viewPrefab: {fileID: 8202644951890263050, guid: 46099dc6620fb95458abaaf633e19169, type: 3}
-        startPoint: {fileID: 8213917405651504311}
+        startPoint: {fileID: 4573149860806921783}
         dealDamageDistance: 0.1
-        defaultDamage: 15
-        speed: 10
+        defaultDamage: 12
+        speed: 11
 --- !u!114 &8744177067080973486
 MonoBehaviour:
   m_ObjectHideFlags: 0

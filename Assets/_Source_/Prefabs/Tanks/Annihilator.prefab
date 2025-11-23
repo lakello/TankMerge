@@ -373,8 +373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Entities.Tank
   attaker: {fileID: 5151786457163877728}
   health: {fileID: 7691004099766282222}
-  takeDamageReward: 100
-  deadReward: 200
+  takeDamageReward: 30
+  deadReward: 100
 --- !u!114 &7691004099766282222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,12 +403,12 @@ MonoBehaviour:
   tower: {fileID: 7462817446647705680}
   reloadTime: 3
   bulletBehaviour:
-    rid: 1876127979945852999
+    rid: 1876128002336620618
   references:
     version: 2
     RefIds:
-    - rid: 1876127979945852999
-      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.Battle, asm: Assembly-CSharp}
+    - rid: 1876128002336620618
+      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.BATTLE, asm: Assembly-CSharp}
       data:
         viewPrefab: {fileID: 8202644951890263050, guid: 46099dc6620fb95458abaaf633e19169, type: 3}
         startPoint: {fileID: 4713658550479917580}
@@ -562,6 +562,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8675494271094170333}
     m_Modifications:
+    - target: {fileID: 1206880566042463603, guid: 27aff108fc7886e408a012282f4f4a5d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3625830975054039784, guid: 27aff108fc7886e408a012282f4f4a5d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

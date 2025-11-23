@@ -720,7 +720,7 @@ MonoBehaviour:
   attaker: {fileID: 1611220049567699608}
   health: {fileID: -4421762942223847486}
   takeDamageReward: 1000
-  deadReward: 5000
+  deadReward: 2000
 --- !u!114 &-4421762942223847486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -733,7 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d80a0b6410744525a78352424ccf7ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::miniit.GAME.Battle.Health
-  maxHealth: 300
+  maxHealth: 500
 --- !u!114 &1611220049567699608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,18 +749,18 @@ MonoBehaviour:
   tower: {fileID: 7388127239184680128}
   reloadTime: 3
   bulletBehaviour:
-    rid: 1876127979945853004
+    rid: 1876128002336620625
   references:
     version: 2
     RefIds:
-    - rid: 1876127979945853004
-      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.Battle, asm: Assembly-CSharp}
+    - rid: 1876128002336620625
+      type: {class: SimpleBulletBehaviour, ns: MiniIT.GAME.BATTLE, asm: Assembly-CSharp}
       data:
         viewPrefab: {fileID: 8202644951890263050, guid: 46099dc6620fb95458abaaf633e19169, type: 3}
-        startPoint: {fileID: 4660923628744035451}
+        startPoint: {fileID: 1921284516603617031}
         dealDamageDistance: 0.1
-        defaultDamage: 20
-        speed: 10
+        defaultDamage: 24
+        speed: 17
 --- !u!114 &3000296055959658868
 MonoBehaviour:
   m_ObjectHideFlags: 0
