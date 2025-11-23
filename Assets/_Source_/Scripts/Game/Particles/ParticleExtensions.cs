@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Particles
+namespace MiniIT.GAME.PARTICLES
 {
     using System.Threading;
     using Cysharp.Threading.Tasks;
@@ -27,7 +27,7 @@ namespace MiniIT.GAME.Particles
 
             pool?.Release(particle);
         }
-		
+
         public static async UniTaskVoid ReleaseAfterTime<T>(
             this ObjectPool<T> pool,
             T obj,

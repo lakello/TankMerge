@@ -5,8 +5,7 @@ namespace MiniIT.GAME
     using AudioModule;
     using AudioModule.Extensions;
     using Cysharp.Threading.Tasks;
-    using MERGE.CELL;
-    using MERGE.UNIT;
+    using MERGE;
     using miniit.INPUT;
     using UnityEngine;
     using UnityEngine.InputSystem;
@@ -18,8 +17,8 @@ namespace MiniIT.GAME
         [SerializeField] private float     holdHeight;
         [SerializeField] private float     castDistance = 2f;
 
-        private InputActions       inputActions = null;
-        private UnityEngine.Camera camera       = null;
+        private InputActions inputActions = null;
+        private Camera       camera       = null;
 
         private GridCell                currentCell = null;
         private CancellationTokenSource ctx         = null;
@@ -29,7 +28,7 @@ namespace MiniIT.GAME
         private void Awake()
         {
             inputActions = GlobalData.Container.Resolve<InputActions>();
-            camera = UnityEngine.Camera.main;
+            camera = Camera.main;
         }
 
         private void OnEnable()
@@ -85,7 +84,7 @@ namespace MiniIT.GAME
             {
                 return;
             }
-            
+
             AudioID.PickDown.PlayOneShot();
 
             DragEnded(currentCell);

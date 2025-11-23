@@ -1,20 +1,15 @@
 namespace MiniIT.GAME.MERGE
 {
-    using CELL;
-    using Doozy.Runtime.UIManager;
-    using Doozy.Runtime.UIManager.Components;
-    using UNIT;
     using MessageModule;
-    using Messages;
     using R3;
     using UnityEngine;
 
     public class MergeUnitSpawner : MonoBehaviour
     {
         [SerializeField] private int levelChunkSize = 10;
-        
+
         private CompositeDisposable disposable;
-        private int givenUnitCount = 0;
+        private int                 givenUnitCount = 0;
 
         private void OnEnable()
         {
@@ -58,7 +53,7 @@ namespace MiniIT.GAME.MERGE
             {
                 givenUnitCount++;
             }
-            
+
             return unit;
         }
     }

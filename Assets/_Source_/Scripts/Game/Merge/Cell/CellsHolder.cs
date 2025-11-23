@@ -1,8 +1,8 @@
-namespace MiniIT.GAME.MERGE.CELL
+namespace MiniIT.GAME.MERGE
 {
     using System;
     using System.Collections.Generic;
-    using UNIT;
+    using SHOP;
     using UnityEngine;
     using UtilsModule.Other;
     using ZLinq;

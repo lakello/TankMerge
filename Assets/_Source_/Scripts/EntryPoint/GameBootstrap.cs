@@ -1,9 +1,8 @@
 namespace MiniIT.ENTRYPOINT
 {
     using AudioModule;
-    using AudioModule.Extensions;
     using AudioModule.Messages;
-    using GAME.MERGE.UNIT;
+    using GAME.MERGE;
     using GAME.PLAYER;
     using MessageModule;
     using miniit.INPUT;

@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Camera
+namespace MiniIT.GAME.CAMERA
 {
     using Sirenix.OdinInspector;
     using Unity.Cinemachine;

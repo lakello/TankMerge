@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     public interface IBulletBehaviour
     {

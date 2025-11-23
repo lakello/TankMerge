@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using System.Threading;
     using Cysharp.Threading.Tasks;
@@ -32,7 +32,6 @@ namespace MiniIT.GAME.Battle
         public void StartAttack(BattleData data)
         {
             targetFraction = data.TargetFraction;
-            
 
             ctx = new CancellationTokenSource();
 

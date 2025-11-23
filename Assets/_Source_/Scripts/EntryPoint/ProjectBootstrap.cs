@@ -2,7 +2,7 @@ namespace MiniIT.ENTRYPOINT
 {
     using AudioModule;
     using GAME.PLAYER;
-    using GAME.Settings;
+    using GAME.SETTINGS;
     using miniit.INPUT;
     using NaughtyAttributes.Core.DrawerAttributes;
     using UnityEngine;
@@ -38,7 +38,7 @@ namespace MiniIT.ENTRYPOINT
             GlobalData.Container.Register(actions).DisposeOnQuitGame();
             GlobalData.Container.Register(new Wallet()).DisposeOnQuitGame();
             GlobalData.Container.Register(tankDataHolder).DisposeOnQuitGame();
-            
+
             _ = new AudioService(audioDataRef, pointAudioSource, audioSource);
 
             SceneManager.LoadSceneAsync(gameSceneName);

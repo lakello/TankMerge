@@ -1,7 +1,7 @@
-namespace MiniIT.GAME.MERGE
+namespace MiniIT.GAME.GRID
 {
     using System.Collections.Generic;
-    using CELL;
+    using MERGE;
     using Sirenix.OdinInspector;
     using UnityEditor;
     using UnityEngine;

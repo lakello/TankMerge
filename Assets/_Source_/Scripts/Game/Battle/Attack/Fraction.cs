@@ -1,8 +1,8 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
-	public enum Fraction
-	{
-		Friends,
-		Enemy,
-	}
+    public enum Fraction
+    {
+        Friends,
+        Enemy,
+    }
 }

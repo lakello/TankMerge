@@ -1,20 +1,19 @@
-namespace MiniIT.GAME
+namespace MiniIT.GAME.SHOP
 {
     using AudioModule;
     using AudioModule.Extensions;
     using Doozy.Runtime.UIManager;
     using Doozy.Runtime.UIManager.Components;
     using MERGE;
-    using MERGE.CELL;
     using PLAYER;
     using UnityEngine;
     using UtilsModule.Other;
 
     public class BuyUnitButtonHandler : MonoBehaviour
     {
-        [SerializeField] private UIButton  button;
+        [SerializeField] private UIButton         button;
         [SerializeField] private MergeUnitSpawner spawner;
-        [SerializeField] private PriceView priceView;
+        [SerializeField] private PriceView        priceView;
 
         private Wallet wallet = null;
 
@@ -42,7 +41,7 @@ namespace MiniIT.GAME
                     PriceHolder.Instance.NextPrice();
                     priceView.UpdateView();
                     spawner.Spawn();
-                    
+
                     AudioID.Buy.PlayOneShot();
                 }
             }

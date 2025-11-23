@@ -1,8 +1,8 @@
-namespace MiniIT.GAME.MERGE.UNIT
+namespace MiniIT.GAME.MERGE
 {
     using System;
-    using Entities;
-    using Settings;
+    using ENTITIES;
+    using SETTINGS;
     using UnityEngine;
     using UnityEngine.Pool;
     using UtilsModule.Execute;

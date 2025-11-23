@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Particles
+namespace MiniIT.GAME.PARTICLES
 {
     using System;
     using System.Collections.Generic;

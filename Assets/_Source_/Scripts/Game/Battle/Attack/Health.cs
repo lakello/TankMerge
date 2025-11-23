@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using AudioModule;
     using AudioModule.Extensions;
@@ -32,7 +32,7 @@ namespace MiniIT.GAME.Battle
         {
             IsMax = false;
             Current.Value -= damage;
-            
+
             AudioID.TakeDamage.PlayOneShot();
         }
 

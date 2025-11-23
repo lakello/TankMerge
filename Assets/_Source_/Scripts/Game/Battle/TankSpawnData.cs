@@ -1,14 +1,13 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using System;
-    using Entities;
+    using ENTITIES;
     using UnityEngine;
 
     public class TankSpawnData
     {
         public Transform             Point;
         public Tank                  Tank;
-        public Fraction              Fraction;
         public int                   Level;
         public Action<TankSpawnData> Removed;
     }

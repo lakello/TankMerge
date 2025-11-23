@@ -9,7 +9,7 @@ namespace MiniIT.GAME.UI
     public class DoozyAudioButton : MonoBehaviour
     {
         [SerializeField] private AudioID id;
-        
+
         private UIButton button;
 
         private UIButton Button => button ??= GetComponent<UIButton>();

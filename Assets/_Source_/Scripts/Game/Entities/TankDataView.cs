@@ -1,7 +1,6 @@
-namespace MiniIT.GAME.MERGE.UNIT
+namespace MiniIT.GAME.ENTITIES
 {
     using Doozy.Runtime.UIManager.Components;
-    using Entities;
     using R3;
     using TMPro;
     using UnityEngine;

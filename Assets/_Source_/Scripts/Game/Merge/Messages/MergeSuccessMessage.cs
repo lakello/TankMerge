@@ -1,6 +1,5 @@
-namespace MiniIT.GAME.MERGE.Messages
+namespace MiniIT.GAME.MERGE
 {
-    using CELL;
     using MessageModule;
 
     public class MergeSuccessMessage : IMessage

@@ -1,4 +1,4 @@
-namespace MiniIT.GAME
+namespace MiniIT.GAME.SHOP
 {
     using UnityEngine;
     using UtilsModule.Singleton;

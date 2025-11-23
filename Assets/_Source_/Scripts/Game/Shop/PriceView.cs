@@ -1,8 +1,8 @@
-namespace MiniIT.GAME
+namespace MiniIT.GAME.SHOP
 {
     using Doozy.Runtime.Reactor.Targets;
     using Doozy.Runtime.UIManager.Animators;
-    using MERGE.CELL;
+    using MERGE;
     using PLAYER;
     using R3;
     using TMPro;

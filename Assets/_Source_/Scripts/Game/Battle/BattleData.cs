@@ -1,11 +1,11 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using System;
 
     [Serializable]
     public struct BattleData
     {
-        public Fraction            SelfFraction;
-        public Fraction            TargetFraction;
+        public Fraction SelfFraction;
+        public Fraction TargetFraction;
     }
 }

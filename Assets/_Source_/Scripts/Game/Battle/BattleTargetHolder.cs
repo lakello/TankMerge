@@ -1,8 +1,8 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using System;
     using System.Collections.Generic;
-    using Entities;
+    using ENTITIES;
     using UnityEngine;
     using UtilsModule.Disposable;
     using UtilsModule.Execute;
@@ -70,7 +70,7 @@ namespace MiniIT.GAME.Battle
                 {
                     return null;
                 }
-                
+
                 int index = Random.Range(0, validSpawnData.Length);
 
                 return validSpawnData[index].Tank.Health;
@@ -86,7 +86,7 @@ namespace MiniIT.GAME.Battle
             {
                 return false;
             }
-            
+
             TankSpawnData data = canAddCallback();
 
             TankSpawnData tankSpawnData = fractionSpawnData.AsValueEnumerable().First(d => d.Tank == null);

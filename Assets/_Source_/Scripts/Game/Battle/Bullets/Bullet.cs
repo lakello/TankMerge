@@ -1,11 +1,11 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using System;
     using System.Threading;
     using AudioModule;
     using AudioModule.Extensions;
     using Cysharp.Threading.Tasks;
-    using Particles;
+    using PARTICLES;
     using UnityEngine;
     using UnityEngine.Pool;
 
@@ -37,7 +37,7 @@ namespace MiniIT.GAME.Battle
         private async UniTaskVoid UpdateBehaviour(CancellationToken token)
         {
             behaviour.Init(targetData);
-            
+
             AudioID.Shot.PlayOneShot();
 
             while (token.IsCancellationRequested == false)

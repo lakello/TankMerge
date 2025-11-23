@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using System;
     using UnityEngine;
@@ -15,7 +15,7 @@ namespace MiniIT.GAME.Battle
         [SerializeField]
         private float speed = 10f;
 
-        private float damage;
+        private float      damage;
         private BulletView view;
         private Health     targetHealth;
 

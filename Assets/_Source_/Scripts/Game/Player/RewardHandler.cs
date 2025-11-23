@@ -1,9 +1,8 @@
 namespace MiniIT.GAME.PLAYER
 {
     using System;
-    using Battle;
+    using BATTLE;
     using MessageModule;
-    using Messages;
     using R3;
     using UtilsModule.Other;
 

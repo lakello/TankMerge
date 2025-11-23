@@ -2,11 +2,8 @@ namespace MiniIT.GAME.MERGE
 {
     using AudioModule;
     using AudioModule.Extensions;
-    using CELL;
     using MessageModule;
-    using Messages;
-    using Particles;
-    using UNIT;
+    using PARTICLES;
     using UnityEngine;
     using UnityEngine.Pool;
 
@@ -38,7 +35,7 @@ namespace MiniIT.GAME.MERGE
             {
                 currentCell.ResetItemToPlace();
             }
-            
+
             currentCell.UpdateView(null, null);
 
             return;
@@ -85,7 +82,7 @@ namespace MiniIT.GAME.MERGE
                     ParticleSystem particle = pool.Get();
                     particle.transform.position = nearestCell.MergeUnit.transform.position;
                     pool.ReleaseParticle(particle).Forget();
-                    
+
                     AudioID.Merge.PlayOneShot();
                 }
                 else

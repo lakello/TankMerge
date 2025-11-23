@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Settings
+namespace MiniIT.GAME.SETTINGS
 {
     using System;
     using UnityEngine;

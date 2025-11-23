@@ -1,8 +1,8 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     public class BulletBehaviourData
     {
         public Health TargetHealth;
-        public float DamageMultiplier;
+        public float  DamageMultiplier;
     }
 }

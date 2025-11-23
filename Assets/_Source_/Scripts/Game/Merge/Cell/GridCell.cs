@@ -1,7 +1,6 @@
-namespace MiniIT.GAME.MERGE.CELL
+namespace MiniIT.GAME.MERGE
 {
     using System;
-    using UNIT;
     using UnityEngine;
 
     public class GridCell : MonoBehaviour
@@ -9,7 +8,7 @@ namespace MiniIT.GAME.MERGE.CELL
         private const int HITS_COUNT = 4;
 
         private static readonly RaycastHit[] hitsCache = new RaycastHit[HITS_COUNT];
-        private static readonly int BaseColor = Shader.PropertyToID("_BaseColor");
+        private static readonly int          BaseColor = Shader.PropertyToID("_BaseColor");
 
         [SerializeField] private LayerMask    layerMask;
         [SerializeField] private Transform    placePoint;

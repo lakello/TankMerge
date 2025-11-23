@@ -1,9 +1,8 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
-    using Entities;
-    using MERGE.CELL;
-    using MERGE.UNIT;
-    using Settings;
+    using ENTITIES;
+    using MERGE;
+    using SETTINGS;
     using UnityEngine;
     using UtilsModule.Other;
     using ZLinq;
@@ -13,7 +12,7 @@ namespace MiniIT.GAME.Battle
         [SerializeField] private GridCell[] cells;
 
         private BattleTargetHolder battleTargetHolder;
-        private TankDataHolder         tankDataHolder;
+        private TankDataHolder     tankDataHolder;
 
         private void Awake()
         {

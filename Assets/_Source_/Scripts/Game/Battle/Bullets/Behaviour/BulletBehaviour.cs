@@ -1,4 +1,4 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using System;
     using UnityEngine;
@@ -25,7 +25,7 @@ namespace MiniIT.GAME.Battle
         public abstract bool TryDealDamage();
 
 #endregion
-        
+
         protected abstract void InternalInit(BulletBehaviourData data);
 
         protected static class BulletViewPoolHolder
@@ -40,7 +40,7 @@ namespace MiniIT.GAME.Battle
                 {
                     return;
                 }
-                
+
                 parent ??= new GameObject($"{nameof(Bullet)}:POOL").transform;
 
                 Value = new ObjectPool<BulletView>(

@@ -1,10 +1,10 @@
-namespace MiniIT.GAME.Battle
+namespace MiniIT.GAME.BATTLE
 {
     using System.Threading;
     using Cysharp.Threading.Tasks;
-    using Entities;
-    using MERGE.UNIT;
-    using Settings;
+    using ENTITIES;
+    using MERGE;
+    using SETTINGS;
     using Sirenix.OdinInspector;
     using UnityEngine;
     using UtilsModule.Other;
@@ -38,7 +38,9 @@ namespace MiniIT.GAME.Battle
         [Button]
         private void OnUnitRemoved(Fraction fraction)
         {
-            SpawnUnits(battleTargetHolder.IsAllEmpty(Fraction.Enemy) ? 100 : spawnChance, ctx.Token).Forget();
+            SpawnUnits(battleTargetHolder.IsAllEmpty(Fraction.Enemy)
+                ? 100
+                : spawnChance, ctx.Token).Forget();
         }
 
         private async UniTaskVoid SpawnUnits(float chance, CancellationToken token)

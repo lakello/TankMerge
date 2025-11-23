@@ -1,7 +1,7 @@
-namespace MiniIT.GAME.Settings
+namespace MiniIT.GAME.SETTINGS
 {
     using System.Collections.Generic;
-    using Entities;
+    using ENTITIES;
     using Sirenix.OdinInspector;
     using UnityEngine;
     using UnityEngine.Pool;
