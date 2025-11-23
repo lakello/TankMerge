@@ -2,6 +2,8 @@ namespace MiniIT.GAME
 {
     using System;
     using System.Threading;
+    using AudioModule;
+    using AudioModule.Extensions;
     using Cysharp.Threading.Tasks;
     using MERGE.CELL;
     using MERGE.UNIT;
@@ -73,6 +75,7 @@ namespace MiniIT.GAME
 
                 ctx = new CancellationTokenSource();
                 DragItem(ctx.Token).Forget();
+                AudioID.PickUp.PlayOneShot();
             }
         }
 
@@ -82,6 +85,8 @@ namespace MiniIT.GAME
             {
                 return;
             }
+            
+            AudioID.PickDown.PlayOneShot();
 
             DragEnded(currentCell);
 

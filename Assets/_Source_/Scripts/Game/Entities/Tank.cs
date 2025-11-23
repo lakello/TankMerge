@@ -1,6 +1,8 @@
 namespace MiniIT.GAME.Entities
 {
     using System;
+    using AudioModule;
+    using AudioModule.Extensions;
     using Battle;
     using MessageModule;
     using Particles;
@@ -83,6 +85,8 @@ namespace MiniIT.GAME.Entities
                 ParticleSystem particle = pool.Get();
                 particle.transform.position = transform.position;
                 pool.ReleaseParticle(particle).Forget();
+                
+                AudioID.Dead.PlayOneShot();
 
                 Dead(this);
             }

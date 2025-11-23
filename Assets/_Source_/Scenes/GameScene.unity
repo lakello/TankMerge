@@ -5084,6 +5084,8 @@ GameObject:
   - component: {fileID: 1067247524}
   - component: {fileID: 1067247523}
   - component: {fileID: 1067247522}
+  - component: {fileID: 1067247532}
+  - component: {fileID: 1067247533}
   m_Layer: 5
   m_Name: Button - Control Merge
   m_TagString: Untagged
@@ -7138,6 +7140,32 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1067247532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067247519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fb47c7e9e74a11896ee34677b35fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.UI.DoozyAudioButton
+  id: 2
+--- !u!114 &1067247533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1067247519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fb47c7e9e74a11896ee34677b35fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.UI.DoozyAudioButton
+  id: 0
 --- !u!1 &1072902661
 GameObject:
   m_ObjectHideFlags: 0
@@ -12079,6 +12107,8 @@ GameObject:
   - component: {fileID: 1625960422}
   - component: {fileID: 1625960421}
   - component: {fileID: 1625960420}
+  - component: {fileID: 1625960430}
+  - component: {fileID: 1625960431}
   m_Layer: 5
   m_Name: Button - Control Fight
   m_TagString: Untagged
@@ -14133,6 +14163,32 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1625960430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625960417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fb47c7e9e74a11896ee34677b35fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.UI.DoozyAudioButton
+  id: 2
+--- !u!114 &1625960431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625960417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fb47c7e9e74a11896ee34677b35fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.UI.DoozyAudioButton
+  id: 0
 --- !u!1001 &1626259244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17662,6 +17718,7 @@ GameObject:
   - component: {fileID: 2111529901}
   - component: {fileID: 2111529910}
   - component: {fileID: 2111529911}
+  - component: {fileID: 2111529912}
   m_Layer: 5
   m_Name: Button - Control Buy
   m_TagString: Untagged
@@ -19733,6 +19790,19 @@ MonoBehaviour:
   animator: {fileID: 2111529902}
   possibleColor: {r: 0.32941177, g: 0.7254902, b: 0.22352941, a: 1}
   impossibleColor: {r: 0.6431373, g: 0.7176471, b: 0.61960787, a: 1}
+--- !u!114 &2111529912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111529898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fb47c7e9e74a11896ee34677b35fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MiniIT.GAME.UI.DoozyAudioButton
+  id: 0
 --- !u!1001 &2116979493
 PrefabInstance:
   m_ObjectHideFlags: 0

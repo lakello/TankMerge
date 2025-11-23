@@ -1,5 +1,7 @@
 namespace MiniIT.GAME
 {
+    using AudioModule;
+    using AudioModule.Extensions;
     using Doozy.Runtime.UIManager;
     using Doozy.Runtime.UIManager.Components;
     using MERGE;
@@ -40,6 +42,8 @@ namespace MiniIT.GAME
                     PriceHolder.Instance.NextPrice();
                     priceView.UpdateView();
                     spawner.Spawn();
+                    
+                    AudioID.Buy.PlayOneShot();
                 }
             }
         }

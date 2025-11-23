@@ -1,5 +1,7 @@
 namespace MiniIT.GAME.Battle
 {
+    using AudioModule;
+    using AudioModule.Extensions;
     using R3;
     using UnityEngine;
 
@@ -30,6 +32,8 @@ namespace MiniIT.GAME.Battle
         {
             IsMax = false;
             Current.Value -= damage;
+            
+            AudioID.TakeDamage.PlayOneShot();
         }
 
         private void OnDisable()

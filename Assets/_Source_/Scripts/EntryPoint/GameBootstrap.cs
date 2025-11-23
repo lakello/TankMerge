@@ -1,7 +1,11 @@
 namespace MiniIT.ENTRYPOINT
 {
+    using AudioModule;
+    using AudioModule.Extensions;
+    using AudioModule.Messages;
     using GAME.MERGE.UNIT;
     using GAME.PLAYER;
+    using MessageModule;
     using miniit.INPUT;
     using Sirenix.OdinInspector;
     using UnityEngine;
@@ -16,6 +20,18 @@ namespace MiniIT.ENTRYPOINT
 
         public ExecuteMethod Method => ExecuteMethod.Awake;
         public int Priority { get; set; }
+
+        private void Start()
+        {
+            new M_PlayLoopClipByType()
+            {
+                MessageData = new AudioMessageData()
+                {
+                    ID = AudioID.Background,
+                    WaitInit = true,
+                }
+            }.Publish();
+        }
 
         public Executor GetExecutor()
         {
